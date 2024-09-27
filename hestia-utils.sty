@@ -1,0 +1,171 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{hestia-utils}[2024/09/27 Utility file for aliases, colors, and other fun stuff]
+
+        \RequirePackage{amsmath,amsthm,amssymb,color,latexsym}
+        \RequirePackage{scalerel}
+
+        % Operators
+        \DeclareMathOperator{\Syl}{Syl}
+        \DeclareMathOperator{\Aut}{Aut}
+        \DeclareMathOperator{\Perm}{Perm}
+        \DeclareMathOperator{\Class}{Class}
+        \DeclareMathOperator{\diam}{diam}
+        \DeclareMathOperator{\rad}{rad}
+        \DeclareMathOperator{\im}{im}
+        \DeclareMathOperator{\End}{End}
+        \DeclareMathOperator{\Hom}{Hom}
+        \DeclareMathOperator{\id}{id}
+        \DeclareMathOperator{\ev}{ev}
+        \DeclareMathOperator{\Spec}{spec}
+        \DeclareMathOperator{\tr}{tr}
+        \DeclareMathOperator{\orb}{Orbit}
+
+        % Commands that mostly act like operators
+        \newcommand{\inv}{^{-1}}
+        \newcommand{\qand}{\quad \text{and}\quad}
+        \newcommand{\qqand}{\qquad \text{and}\qquad}
+        \newcommand{\st}{\, | \,}
+
+        % Wrapping
+        \newcommand{\flr}[1]{\left\lfloor{#1}\right\rfloor}
+        \newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
+        \newcommand{\gen}[1]{\langle #1 \rangle}
+        \newcommand{\gpres}[2]{\langle #1 \st #2 \rangle}
+        \newcommand{\norm}[2]{\|#1\|_{#2}}
+        \newcommand{\abs}[1]{\left|{#1}\right|}
+
+       % \newenvironment{textmatrix}
+        %{\left(\begin{smallmatrix}}
+        %{\end{smallmatrix}\right)}
+
+        \newcommand{\mat}[1]{\mathchoice
+        {\begin{pmatrix}#1\end{pmatrix}}
+        {\left(\begin{smallmatrix}#1\end{smallmatrix}\right)}
+        {\left(\begin{smallmatrix}#1\end{smallmatrix}\right)}
+        {\left(\begin{smallmatrix}#1\end{smallmatrix}\right)}
+        }
+
+        \newcommand{\bmat}[1]{\begin{bmatrix}#1
+        \end{bmatrix}}
+
+        \newcommand{\set}[1]{\text{$\{#1\}$}}
+
+
+        % Unnumbered Environments
+        \newenvironment{sketch}{\noindent\textit{Sketch.\ }}{}
+        \newenvironment{remark}{\noindent\textit{Remark.\ }}{}
+        \newenvironment{note}{\textit{Note.\ }}{}
+        \newenvironment{problem}[1][Problem]{\noindent{\textbf{#1.}}\hspace{0.05in}}{
+                \vspace{0.1in}
+        }
+        \newenvironment{solution}[1][\it{Solution}]{\noindent \textbf{#1. } }{\hfill $\blacksquare$
+                \vspace{0.25in}
+        }
+
+        \newenvironment{prooftop}[1][\it{Proof}]{\noindent \textbf{#1. } }{
+                \vspace{0.25in}
+        }
+
+        \newenvironment{proofbot}{\noindent \it{Proof (Ctd.)} }{\hfill $\blacksquare$
+                \vspace{0.25in}
+        }
+
+
+        \newenvironment{ex}{\noindent {\bf Example.} }{}
+
+
+        % Objects
+        \newcommand{\N}{\mathbb{N}}
+        \newcommand{\Z}{\mathbb{Z}}
+        \newcommand{\R}{\mathbb{R}}
+        \newcommand{\C}{\mathbb{C}}
+        \newcommand{\Q}{\mathbb{Q}}
+        \newcommand{\F}{\mathbb{F}}
+        \newcommand{\Lp}{L^p}
+        \newcommand{\Lq}{L^q}
+        \makeatletter
+        \let\@temp\phi
+\let\phi\varphi
+\let\varphi\@temp
+\makeatother
+
+        % Aliases
+        \newcommand{\tensor}{\otimes}%
+        \newcommand{\cross}{\times}%
+        \newcommand{\comp}{\circ}%
+        \let\iso\cong
+        \let\cong\equiv
+        \let\eset\emptyset
+        \let\homeo\simeq
+        \newcommand{\I}{[0,1]}
+
+
+
+        %coloring
+
+        %pastel rainbow
+        \definecolor{pastelred}{HTML}{FA9189}
+        \definecolor{pastelorange}{HTML}{FCAE7C}
+        \definecolor{pastelyellow}{HTML}{FFE699}
+        \definecolor{pastelgreen}{HTML}{B3F5BC}
+        \definecolor{pastelblue}{HTML}{D6F6FF}
+        \definecolor{pastelpurple}{HTML}{D1BDFF}
+
+         \definecolor{pridered}{HTML}{ff595e}
+        \definecolor{prideorange}{HTML}{f45d01}
+        \definecolor{prideyellow}{HTML}{ffca3a}
+        \definecolor{pridegreen}{HTML}{8ac926}
+        \definecolor{prideblue}{HTML}{1982c4}
+        \definecolor{pridepurple}{HTML}{8e7dbe}
+
+
+	\newcommand{\hestiastyle}[1]{{}}
+
+        \newcounter{rainbowidx}
+	\setcounter{rainbowidx}{1}
+	\newcommand{\rainbow}[1]{{%
+	\if\therainbowidx1{\color{pridered}#1}\else{%
+	\if\therainbowidx2{\color{prideorange}#1}\else{%
+	\if\therainbowidx3{\color{prideyellow}#1}\else{%
+	\if\therainbowidx4{\color{pridegreen}#1}\else{%
+	\if\therainbowidx5{\color{prideblue}#1}\else{%
+	\if\therainbowidx6{\color{pridepurple}#1\setcounter{rainbowidx}{0}%
+	}\fi%
+	}\fi%
+	}\fi%
+	}\fi%
+	}\fi%
+	}\fi%
+	\stepcounter{rainbowidx}}}
+
+
+
+        \newcommand{\pastelrainbow}[1]{{%
+	\if\therainbowidx1{\color{pastelred}#1}\else{%
+	\if\therainbowidx2{\color{pastelorange}#1}\else{%
+	\if\therainbowidx3{\color{pastelyellow}#1}\else{%
+	\if\therainbowidx4{\color{pastelgreen}#1}\else{%
+	\if\therainbowidx5{\color{transblue}#1}\else{%
+	\if\therainbowidx6{\color{pastelpurple}#1\setcounter{rainbowidx}{0}%
+	}\fi%
+	}\fi%
+	}\fi%
+	}\fi%
+	}\fi%
+	}\fi%
+	\stepcounter{rainbowidx}}}
+\makeatletter
+\let\@emph\emph
+       \DeclareOption{gay}{
+		\renewcommand{\hestiastyle}{\rainbow}
+        \renewcommand{\emph}[1]{\@emph{\rainbow{\underline{#1}}}}
+        }
+        \DeclareOption{pastel}{
+		\renewcommand{\hestiastyle}{\pastelrainbow}
+        \renewcommand{\emph}[1]{
+        \@emph{\pastelrainbow{\underline{#1}}}}
+        }
+\makeatother
+
+\DeclareOption*{\PackageWarning{examplepackage}{Unknown ‘\CurrentOption’}}
+\ProcessOptions\relax

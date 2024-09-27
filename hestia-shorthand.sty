@@ -1,0 +1,59 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{hestia-shorthand}[2024/09/27 Shorthands for class notes]
+
+        \RequirePackage{amsmath,amsthm,amssymb,color,latexsym}
+        \RequirePackage{scalerel}
+        \RequirePackage{hestia-utils}
+
+
+        % Commands that mostly act like operators
+        \newcommand{\ST}{\text{ s.t. }}
+        \newcommand{\AlE}{\text{ a.e. }}
+
+        % Wrapping
+        \newcommand{\infseq}[2]{\{#2_{#1}\}_{#1=1}^\infty}
+
+
+        \newcommand{\m}[1]{\hestiastyle{$ #1 $}}
+        \newcommand{\M}[1]{\hestiastyle{$$ #1 $$}}
+        \newcommand{\env}[2]{{\begin{#1}{#2}\end{#1}}}
+
+
+        \newenvironment{alist}[1]{
+        \begin{enumerate}[(a)]
+        #1
+        \end{enumerate}
+        }%patch until I can make env accept options ig
+
+
+        % Aliases
+
+        \newcommand{\icup}[1]{\bigcup_{i=1}^{#1}}
+        \newcommand{\icap}[1]{\bigcap_{i=1}^{#1}}
+        \newcommand{\isum}[1]{\sum_{i=1}^{#1}}
+
+        \let\cl\overline
+        \renewcommand{\cal}{\mathcal}
+
+        \newcommand{\sect}[1]{\section*{\S\ #1}}
+
+        \newcommand{\Il}{(0,1]}
+        \newcommand{\Iu}{[0,1)}
+        \newcommand{\Io}{(0,1)}
+
+        % Text/Math mode {Not in HJUtils}
+        \renewcommand{\iff}{\relax\ifmmode\Rightleftarrow\else if and only if \fi}
+        \newcommand{\A}{\relax\ifmmode\forall\else for all \fi}
+        \newcommand{\E}{\relax\ifmmode\exists\else there exists \fi}
+        \renewcommand{\implies}{\relax\ifmmode\Rightarrow\else implies \fi}
+        \renewcommand{\st}{\relax\ifmmode{\ |\ }\else such that \fi}
+
+        \newcommand{\nbd}{neighborhood }
+        \newcommand{\Nbd}{Neighborhood }
+        \newcommand{\nbds}{neighborhoods }
+        \newcommand{\Nbds}{Neighborhoods }
+
+
+
+\DeclareOption*{\PackageWarning{examplepackage}{Unknown ‘\CurrentOption’}}
+\ProcessOptions\relax
