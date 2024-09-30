@@ -31,7 +31,7 @@
         \newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
         \newcommand{\gen}[1]{\langle #1 \rangle}
         \newcommand{\gpres}[2]{\langle #1 \st #2 \rangle}
-        \newcommand{\norm}[2]{\|#1\|_{#2}}
+        \newcommand{\norm}[1]{\|#1\|}
         \newcommand{\abs}[1]{\left|{#1}\right|}
 
        % \newenvironment{textmatrix}
@@ -81,8 +81,10 @@
         \newcommand{\C}{\mathbb{C}}
         \newcommand{\Q}{\mathbb{Q}}
         \newcommand{\F}{\mathbb{F}}
+        \renewcommand{\H}{\mathbb{H}}
         \newcommand{\Lp}{L^p}
         \newcommand{\Lq}{L^q}
+        \renewcommand{\qed}{\hfill$\blacksquare$}
         \makeatletter
         \let\@temp\phi
 \let\phi\varphi
@@ -156,14 +158,13 @@
 	\stepcounter{rainbowidx}}}
 \makeatletter
 \let\@emph\emph
+\renewcommand{\emph}[1]{\@emph{\hestiastyle{\underline{#1}}}}
        \DeclareOption{gay}{
 		\renewcommand{\hestiastyle}{\rainbow}
-        \renewcommand{\emph}[1]{\@emph{\rainbow{\underline{#1}}}}
         }
         \DeclareOption{pastel}{
 		\renewcommand{\hestiastyle}{\pastelrainbow}
-        \renewcommand{\emph}[1]{
-        \@emph{\pastelrainbow{\underline{#1}}}}
+
         }
 \makeatother
 

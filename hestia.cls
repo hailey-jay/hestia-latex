@@ -33,7 +33,7 @@
 
     \let \footnote \thanks
 
-    \noindent\@author\\\noindent\@classtitle\\\noindent\@date\\\noindent\@title
+    \noindent\@author\par\noindent\@classtitle\par\noindent\@date\par\noindent\@title
 
     \vspace{-5pt}
     \noindent\rule{\textwidth}{1.5pt}
