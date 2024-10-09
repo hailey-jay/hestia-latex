@@ -3,6 +3,12 @@
 
         \RequirePackage{amsmath,amsthm,amssymb,color,latexsym}
         \RequirePackage{scalerel}
+        \RequirePackage{fontspec}
+        \RequirePackage{adjustbox}
+        \setmainfont[Script=Greek]{CMU Serif}
+        \RequirePackage{unicode-math}
+
+        \RequirePackage{dsfont}
 
         % Operators
         \DeclareMathOperator{\Syl}{Syl}
@@ -19,6 +25,9 @@
         \DeclareMathOperator{\Spec}{spec}
         \DeclareMathOperator{\tr}{tr}
         \DeclareMathOperator{\orb}{Orbit}
+        \DeclareMathOperator{\Var}{Var}
+        \DeclareMathOperator{\lcm}{lcm}
+
 
         % Commands that mostly act like operators
         \newcommand{\inv}{^{-1}}
@@ -62,26 +71,18 @@
                 \vspace{0.25in}
         }
 
-        \newenvironment{prooftop}[1][\it{Proof}]{\noindent \textbf{#1. } }{
-                \vspace{0.25in}
-        }
-
-        \newenvironment{proofbot}{\noindent \it{Proof (Ctd.)} }{\hfill $\blacksquare$
-                \vspace{0.25in}
-        }
-
 
         \newenvironment{ex}{\noindent {\bf Example.} }{}
 
 
         % Objects
-        \newcommand{\N}{\mathbb{N}}
-        \newcommand{\Z}{\mathbb{Z}}
-        \newcommand{\R}{\mathbb{R}}
-        \newcommand{\C}{\mathbb{C}}
-        \newcommand{\Q}{\mathbb{Q}}
-        \newcommand{\F}{\mathbb{F}}
-        \renewcommand{\H}{\mathbb{H}}
+        \newcommand{\N}{\mathds{N}}
+        \newcommand{\Z}{\mathds{Z}}
+        \newcommand{\R}{\mathds{R}}
+        \newcommand{\C}{\mathds{C}}
+        \newcommand{\Q}{\mathds{Q}}
+        \newcommand{\F}{\mathds{F}}
+        \renewcommand{\H}{\mathds{H}}
         \newcommand{\Lp}{L^p}
         \newcommand{\Lq}{L^q}
         \renewcommand{\qed}{\hfill$\blacksquare$}
@@ -90,6 +91,7 @@
 \let\phi\varphi
 \let\varphi\@temp
 \makeatother
+
 
         % Aliases
         \newcommand{\tensor}{\otimes}%
@@ -100,8 +102,41 @@
         \let\eset\emptyset
         \let\homeo\simeq
         \newcommand{\I}{[0,1]}
+        \let\into\hookrightarrow
+\let\onto\twoheadrightarrow
+\newcommand{\isoarrow}{\overset{\sim}{\to}}
+\let\join\vee
+\let\meet\wedge
 
+        %cute qed stuff
 
+        \newcommand{\smileyhalmos}{$\square$\kern-0.65em \raisebox{1pt}{\adjustbox{scale=0.5}{$\smile$}}
+	\kern-0.78em
+	\raisebox{0.3em}{\adjustbox{scale=0.6}{$\cdot$}}
+	\kern-0.28em
+	\raisebox{0.3em}{\adjustbox{scale=0.6}{$\cdot$}}}
+\newcounter{flowerindex}
+	\setcounter{flowerindex}{1}
+	\newcommand{\flower}{{%
+	\if\theflowerindex1{{\fontspec{Symbola}🌻}}\else{%
+	\if\theflowerindex2{{\fontspec{Symbola}🌸}}\else{%
+	\if\theflowerindex3{{\fontspec{Symbola}💐}}\else{%
+	\if\theflowerindex4{{\fontspec{Symbola}🌷}}\else{%
+	\if\theflowerindex5{{\fontspec{Symbola}🌹}}\else{%
+	\if\theflowerindex6{{\fontspec{Symbola}🥀}}\else{%
+	\if\theflowerindex7{{\fontspec{Symbola}🌺}}\else{%
+	\if\theflowerindex8{{\fontspec{Symbola}🌼}\setcounter{flowerindex}{0}%
+	}\fi%
+	}\fi%
+	}\fi%
+	}\fi%
+	}\fi%
+	}\fi%
+	}\fi%
+	}\fi%
+	\stepcounter{flowerindex}}}
+	\newcommand{\flowerqed}{\hfill\adjustbox{scale=1.2}{\flower}\n}
+	\newcommand{\smileyqed}{\hfill\smileyhalmos\n}
 
         %coloring
 
@@ -121,7 +156,7 @@
         \definecolor{pridepurple}{HTML}{8e7dbe}
 
 
-	\newcommand{\hestiastyle}[1]{{}}
+	\newcommand{\hestiastyle}[1]{{#1}}
 
         \newcounter{rainbowidx}
 	\setcounter{rainbowidx}{1}

@@ -16,14 +16,19 @@
 
         \newcommand{\m}[1]{\hestiastyle{$ #1 $}}
         \newcommand{\M}[1]{\hestiastyle{$$ #1 $$}}
-        \newcommand{\env}[2]{{\begin{#1}{#2}\end{#1}}}
+        \newcommand{\env}[1]{~\n\noindent{\bf#1. }}
 
+        \newcommand{\ap}[1]{\left(#1\right)}
 
-        \newenvironment{alist}[1]{
-        \begin{enumerate}[(a)]
-        #1
-        \end{enumerate}
-        }%patch until I can make env accept options ig
+        \newcounter{example}[section]
+
+\renewcommand{\ex}[1]{\noindent{\bf Example~\theexample.\stepcounter{example} }{#1}\n}
+\renewcommand{\problem}[1]{~\n\noindent{\bf#1. }%\it
+}
+
+\newcommand{\goal}{\noindent\textit{Goal: }}
+\newcommand{\radish}{\n\vspace{0.1in}\hrule\vspace{0.1in}\n}
+\newcommand{\sradish}{\n\vspace{-0.2in}\hrule\vspace{0.1in}\n}
 
 
         % Aliases
@@ -34,12 +39,13 @@
 
         \let\cl\overline
         \renewcommand{\cal}{\mathcal}
+\newcommand{\n}{~\par}
+        \newcommand{\clear}{\rm~\n}
+\renewcommand{\\}{\backslash}
 
         \newcommand{\sect}[1]{\section*{\S\ #1}}
 
-        \newcommand{\Il}{(0,1]}
-        \newcommand{\Iu}{[0,1)}
-        \newcommand{\Io}{(0,1)}
+        \newcommand{\oI}{(0,1)}
         \newcommand{\ltl}{\proof Left to latte.\qed}
 
         % Text/Math mode {Not in HJUtils}
