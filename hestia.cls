@@ -13,6 +13,9 @@
 \RequirePackage{mathtools}
 \RequirePackage{nccmath}
 
+\RequirePackage{fontspec}
+\setmainfont[Script=Greek]{CMU Serif}
+        \RequirePackage{unicode-math}
 
 \definecolor{transblue}{HTML}{60b7f6}
 \definecolor{slate}{HTML}{444444}
@@ -21,12 +24,6 @@
 
 \RequirePackage{tikz}
 \usetikzlibrary{calc}
-
-
-\makeatletter
-
-\makeatletter
-
 
 \def\classtitle#1{\def\@classtitle{#1}}
 \def\@maketitle{%
@@ -86,6 +83,20 @@
     \geometry{landscape}
 }
 
-\DeclareOption*{\PackageWarning{examplepackage}{Unknown ‘\CurrentOption’}}
+\newif\if@loadsans\@loadsansfalse
+\DeclareOption{sans}{
+\@loadsanstrue
+\PassOptionsToPackage{sans}{dsfont}
+}
+\DeclareOption*{\ClassWarning{hestia}{Unknown ‘\CurrentOption’}}
 \ProcessOptions\relax
-\makeatother
+
+\if@loadsans
+  \RequirePackage{concmath-otf}
+  \RequirePackage[default]{cantarell}
+\fi
+
+\RequirePackage{dsfont}
+
+
+\endinput

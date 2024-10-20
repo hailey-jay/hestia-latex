@@ -5,10 +5,6 @@
         \RequirePackage{scalerel}
         \RequirePackage{fontspec}
         \RequirePackage{adjustbox}
-        \setmainfont[Script=Greek]{CMU Serif}
-        \RequirePackage{unicode-math}
-
-        \RequirePackage{dsfont}
 
         % Operators
         \DeclareMathOperator{\Syl}{Syl}
@@ -86,11 +82,11 @@
         \newcommand{\Lp}{L^p}
         \newcommand{\Lq}{L^q}
         \renewcommand{\qed}{\hfill$\blacksquare$}
-        \makeatletter
+
         \let\@temp\phi
 \let\phi\varphi
 \let\varphi\@temp
-\makeatother
+
 
 
         % Aliases
@@ -191,7 +187,6 @@
 	}\fi%
 	}\fi%
 	\stepcounter{rainbowidx}}}
-\makeatletter
 \let\@emph\emph
 \renewcommand{\emph}[1]{\@emph{\hestiastyle{\underline{#1}}}}
        \DeclareOption{gay}{
@@ -201,7 +196,6 @@
 		\renewcommand{\hestiastyle}{\pastelrainbow}
 
         }
-\makeatother
 
-\DeclareOption*{\PackageWarning{examplepackage}{Unknown ‘\CurrentOption’}}
+\DeclareOption*{\PackageWarning{hestia-utils}{Unknown ‘\CurrentOption’}}
 \ProcessOptions\relax
