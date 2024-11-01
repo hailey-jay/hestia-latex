@@ -1,7 +1,7 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{hestia-utils}[2024/09/27 Utility file for aliases, colors, and other fun stuff]
 
-        \RequirePackage{amsmath,amsthm,amssymb,color,latexsym}
+        \RequirePackage{amsmath,amsthm,color}
         \RequirePackage{scalerel}
         \RequirePackage{fontspec}
         \RequirePackage{adjustbox}
@@ -38,6 +38,16 @@
         \newcommand{\gpres}[2]{\langle #1 \st #2 \rangle}
         \newcommand{\norm}[1]{\|#1\|}
         \newcommand{\abs}[1]{\left|{#1}\right|}
+        \newcommand{\bra}[1]{\langle {#1} |}
+        \newcommand{\Bra}[1]{\left\langle {#1} \right|}
+        \newcommand{\ket}[1]{|{#1}\rangle}
+        \newcommand{\Ket}[1]{\left|{#1}\right\rangle}
+        \newcommand{\braket}[2]{ \rangle {#1} | {#2} \rangle}
+        \newcommand{\BraKet}[2]{\left \rangle {#1} \right|\left. {#2} \right \rangle}
+
+        \newenvironment{examples}{\noindent\textit{Examples.} \begin{itemize}}{\end{itemize}}
+
+
 
        % \newenvironment{textmatrix}
         %{\left(\begin{smallmatrix}}
@@ -72,12 +82,12 @@
 
 
         % Objects
-        \newcommand{\N}{\mathds{N}}
-        \newcommand{\Z}{\mathds{Z}}
-        \newcommand{\R}{\mathds{R}}
-        \newcommand{\C}{\mathds{C}}
-        \newcommand{\Q}{\mathds{Q}}
-        \newcommand{\F}{\mathds{F}}
+        \providecommand{\N}{\mathds{N}}
+        \providecommand{\Z}{\mathds{Z}}
+        \providecommand{\R}{\mathds{R}}
+        \providecommand{\C}{\mathds{C}}
+        \providecommand{\Q}{\mathds{Q}}
+        \providecommand{\F}{\mathds{F}}
         \renewcommand{\H}{\mathds{H}}
         \newcommand{\Lp}{L^p}
         \newcommand{\Lq}{L^q}
@@ -113,7 +123,7 @@
 	\raisebox{0.3em}{\adjustbox{scale=0.6}{$\cdot$}}}
 \newcounter{flowerindex}
 	\setcounter{flowerindex}{1}
-	\newcommand{\flower}{{%
+	\newcommand{\flower}{\hestiastyle{{%
 	\if\theflowerindex1{{\fontspec{Symbola}🌻}}\else{%
 	\if\theflowerindex2{{\fontspec{Symbola}🌸}}\else{%
 	\if\theflowerindex3{{\fontspec{Symbola}💐}}\else{%
@@ -130,7 +140,7 @@
 	}\fi%
 	}\fi%
 	}\fi%
-	\stepcounter{flowerindex}}}
+	\stepcounter{flowerindex}}}}
 	\newcommand{\flowerqed}{\hfill\adjustbox{scale=1.2}{\flower}\n}
 	\newcommand{\smileyqed}{\hfill\smileyhalmos\n}
 
@@ -153,6 +163,8 @@
 
 
 	\newcommand{\hestiastyle}[1]{{#1}}
+
+\newcommand{\flwr}{{\fontspec{Symbola}🌹}}
 
         \newcounter{rainbowidx}
 	\setcounter{rainbowidx}{1}

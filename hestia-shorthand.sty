@@ -13,20 +13,24 @@
         % Wrapping
         \newcommand{\infseq}[2]{\{#2_{#1}\}_{#1=1}^\infty}
 
-
         \newcommand{\m}[1]{\hestiastyle{$ #1 $}}
         \newcommand{\M}[1]{\hestiastyle{$$ #1 $$}}
-        \newcommand{\env}[1]{~\n\noindent{\bf#1. }}
 
+        %\newcommand{\p}[1]{(#1)}
         \newcommand{\ap}[1]{\left(#1\right)}
 
         \newcounter{example}[section]
 
-\renewcommand{\ex}[1]{\noindent{\bf Example~\theexample.\stepcounter{example} }{#1}\n}
-\renewcommand{\problem}[1]{~\n\noindent{\bf#1. }%\it
-}
+        \renewcommand{\ex}[1]{\noindent{\bf Example~\theexample.\stepcounter{example} }{#1}\n}
 
-\newcommand{\goal}{\noindent\textit{Goal: }}
+         %proof, interjection, and other nonsense.
+        \newcommand{\PrB}[1]{\nointent\textbf{#1. }}
+        \newcommand{\PrI}[1]{\noindent\textit{#1 }}
+        \newcommand{\PrRa}[1]{\noindent($\Longrightarrow$)}
+        \newcommand{\Prra}[1]{\noindent($\Rightarrow$)}
+        \newcommand{\PrLa}[1]{\noindent($\Longleftarrow$)}
+        \newcommand{\Prla}[1]{\noindent($\Leftarrow$)}
+
 \newcommand{\radish}{\n\vspace{0.1in}\hrule\vspace{0.1in}\n}
 \newcommand{\sradish}{\n\vspace{-0.2in}\hrule\vspace{0.1in}\n}
 
