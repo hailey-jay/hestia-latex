@@ -1,49 +1,50 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{hestia-utils}[2024/09/27 Utility file for aliases, colors, and other fun stuff]
 
-        \RequirePackage{amsmath,amsthm,color}
-        \RequirePackage{scalerel}
-        \RequirePackage{fontspec}
-        \RequirePackage{adjustbox}
+% Required packages
+\RequirePackage{amsmath, amsthm, color}
+\RequirePackage{scalerel}
+\RequirePackage{fontspec}
+\RequirePackage{adjustbox}
+\RequirePackage{xspace}
 
-        % Operators
-        \DeclareMathOperator{\Syl}{Syl}
-        \DeclareMathOperator{\Aut}{Aut}
-        \DeclareMathOperator{\Perm}{Perm}
-        \DeclareMathOperator{\Class}{Class}
-        \DeclareMathOperator{\diam}{diam}
-        \DeclareMathOperator{\rad}{rad}
-        \DeclareMathOperator{\im}{im}
-        \DeclareMathOperator{\End}{End}
-        \DeclareMathOperator{\Hom}{Hom}
-        \DeclareMathOperator{\id}{id}
-        \DeclareMathOperator{\ev}{ev}
-        \DeclareMathOperator{\Spec}{spec}
-        \DeclareMathOperator{\tr}{tr}
-        \DeclareMathOperator{\orb}{Orbit}
-        \DeclareMathOperator{\Var}{Var}
-        \DeclareMathOperator{\lcm}{lcm}
+% Operators
+\DeclareMathOperator{\Syl}{Syl}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Perm}{Perm}
+\DeclareMathOperator{\Class}{Class}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\rad}{rad}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\ev}{ev}
+\DeclareMathOperator{\Spec}{spec}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\orb}{Orbit}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\lcm}{lcm}
 
+% Commands that mostly act like operators
+\newcommand{\inv}{^{-1}}
+\newcommand{\qand}{\quad \text{and}\quad}
+\newcommand{\qqand}{\qquad \text{and}\qquad}
+\newcommand{\st}{\, | \,}
 
-        % Commands that mostly act like operators
-        \newcommand{\inv}{^{-1}}
-        \newcommand{\qand}{\quad \text{and}\quad}
-        \newcommand{\qqand}{\qquad \text{and}\qquad}
-        \newcommand{\st}{\, | \,}
-
-        % Wrapping
-        \newcommand{\flr}[1]{\left\lfloor{#1}\right\rfloor}
-        \newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
-        \newcommand{\gen}[1]{\langle #1 \rangle}
-        \newcommand{\gpres}[2]{\langle #1 \st #2 \rangle}
-        \newcommand{\norm}[1]{\|#1\|}
-        \newcommand{\abs}[1]{\left|{#1}\right|}
-        \newcommand{\bra}[1]{\langle {#1} |}
-        \newcommand{\Bra}[1]{\left\langle {#1} \right|}
-        \newcommand{\ket}[1]{|{#1}\rangle}
-        \newcommand{\Ket}[1]{\left|{#1}\right\rangle}
-        \newcommand{\braket}[2]{ \rangle {#1} | {#2} \rangle}
-        \newcommand{\BraKet}[2]{\left \rangle {#1} \right|\left. {#2} \right \rangle}
+% Wrapping commands
+\newcommand{\flr}[1]{\left\lfloor{#1}\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
+\newcommand{\gen}[1]{\langle #1 \rangle}
+\newcommand{\gpres}[2]{\langle #1 \st #2 \rangle}
+\newcommand{\norm}[1]{\|#1\|}
+\newcommand{\abs}[1]{\left|{#1}\right|}
+\newcommand{\bra}[1]{\langle {#1} |}
+\newcommand{\Bra}[1]{\left\langle {#1} \right|}
+\newcommand{\ket}[1]{|{#1}\rangle}
+\newcommand{\Ket}[1]{\left|{#1}\right\rangle}
+\newcommand{\braket}[2]{ \rangle {#1} | {#2} \rangle}
+\newcommand{\BraKet}[2]{\left \rangle {#1} \right|\left. {#2} \right \rangle}
 
         \newenvironment{examples}{\noindent\textit{Examples.} \begin{itemize}}{\end{itemize}}
 
@@ -70,10 +71,11 @@
         \newenvironment{sketch}{\noindent\textit{Sketch.\ }}{}
         \newenvironment{remark}{\noindent\textit{Remark.\ }}{}
         \newenvironment{note}{\textit{Note.\ }}{}
-        \newenvironment{problem}[1][Problem]{\noindent{\textbf{#1.}}\hspace{0.05in}}{
-                \vspace{0.1in}
-        }
-        \newenvironment{solution}[1][\it{Solution}]{\noindent \textbf{#1. } }{\hfill $\blacksquare$
+        %\newenvironment{problem}[1][Problem]{\noindent{\textbf{#1.}}\xspace}{
+        %        \vspace{0.1in}
+        %}
+        \newcommand{\problem}[1]{\noindent{\bf #1.}\xspace}
+        \newenvironment{solution}[1][\it{Solution}]{\noindent \textbf{#1.}\xspacee}{\hfill $\blacksquare$
                 \vspace{0.25in}
         }
 
@@ -82,106 +84,89 @@
 
 
         % Objects
-        \providecommand{\N}{\mathds{N}}
-        \providecommand{\Z}{\mathds{Z}}
-        \providecommand{\R}{\mathds{R}}
-        \providecommand{\C}{\mathds{C}}
-        \providecommand{\Q}{\mathds{Q}}
-        \providecommand{\F}{\mathds{F}}
-        \renewcommand{\H}{\mathds{H}}
+\providecommand{\N}{\mathds{N}}
+\providecommand{\Z}{\mathds{Z}}
+\providecommand{\R}{\mathds{R}}
+\providecommand{\C}{\mathds{C}}
+\providecommand{\Q}{\mathds{Q}}
+\providecommand{\F}{\mathds{F}}
+\renewcommand{\H}{\mathds{H}}
+
+
         \newcommand{\Lp}{L^p}
         \newcommand{\Lq}{L^q}
         \renewcommand{\qed}{\hfill$\blacksquare$}
 
-        \let\@temp\phi
+% Aliases and symbols
+\let\@temp\phi
 \let\phi\varphi
 \let\varphi\@temp
-
-
-
-        % Aliases
-        \newcommand{\tensor}{\otimes}%
-        \newcommand{\cross}{\times}%
-        \newcommand{\comp}{\circ}%
-        \let\iso\cong
-        \let\cong\equiv
-        \let\eset\emptyset
-        \let\homeo\simeq
-        \newcommand{\I}{[0,1]}
-        \let\into\hookrightarrow
+\newcommand{\tensor}{\otimes}%
+\newcommand{\cross}{\times}%
+\newcommand{\comp}{\circ}%
+\let\iso\cong
+\let\cong\equiv
+\let\eset\emptyset
+\let\homeo\simeq
+\newcommand{\I}{[0,1]}
+\let\into\hookrightarrow
 \let\onto\twoheadrightarrow
 \newcommand{\isoarrow}{\overset{\sim}{\to}}
-\let\join\vee
-\let\meet\wedge
+
 
         %cute qed stuff
 
-        \newcommand{\smileyhalmos}{$\square$\kern-0.65em \raisebox{1pt}{\adjustbox{scale=0.5}{$\smile$}}
-	\kern-0.78em
-	\raisebox{0.3em}{\adjustbox{scale=0.6}{$\cdot$}}
-	\kern-0.28em
-	\raisebox{0.3em}{\adjustbox{scale=0.6}{$\cdot$}}}
 \newcounter{flowerindex}
-	\setcounter{flowerindex}{1}
-	\newcommand{\flower}{\hestiastyle{{%
-	\if\theflowerindex1{{\fontspec{Symbola}🌻}}\else{%
-	\if\theflowerindex2{{\fontspec{Symbola}🌸}}\else{%
-	\if\theflowerindex3{{\fontspec{Symbola}💐}}\else{%
-	\if\theflowerindex4{{\fontspec{Symbola}🌷}}\else{%
-	\if\theflowerindex5{{\fontspec{Symbola}🌹}}\else{%
-	\if\theflowerindex6{{\fontspec{Symbola}🥀}}\else{%
-	\if\theflowerindex7{{\fontspec{Symbola}🌺}}\else{%
-	\if\theflowerindex8{{\fontspec{Symbola}🌼}\setcounter{flowerindex}{0}%
-	}\fi%
-	}\fi%
-	}\fi%
-	}\fi%
-	}\fi%
-	}\fi%
-	}\fi%
-	}\fi%
-	\stepcounter{flowerindex}}}}
-	\newcommand{\flowerqed}{\hfill\adjustbox{scale=1.2}{\flower}\n}
-	\newcommand{\smileyqed}{\hfill\smileyhalmos\n}
-
-        %coloring
-
-        %pastel rainbow
-        \definecolor{pastelred}{HTML}{FA9189}
-        \definecolor{pastelorange}{HTML}{FCAE7C}
-        \definecolor{pastelyellow}{HTML}{FFE699}
-        \definecolor{pastelgreen}{HTML}{B3F5BC}
-        \definecolor{pastelblue}{HTML}{D6F6FF}
-        \definecolor{pastelpurple}{HTML}{D1BDFF}
-
-         \definecolor{pridered}{HTML}{ff595e}
-        \definecolor{prideorange}{HTML}{f45d01}
-        \definecolor{prideyellow}{HTML}{ffca3a}
-        \definecolor{pridegreen}{HTML}{8ac926}
-        \definecolor{prideblue}{HTML}{1982c4}
-        \definecolor{pridepurple}{HTML}{8e7dbe}
-
-
-	\newcommand{\hestiastyle}[1]{{#1}}
-
+\newcommand{\flower}{\hestiastyle{%
+\ifcase\theflowerindex%
+  \or {\fontspec{Symbola}🌹}%
+  \or {\fontspec{Symbola}🌷}%
+  \or {\fontspec{Symbola}💐}%
+  \or {\fontspec{Symbola}🌸}%
+  \or {\fontspec{Symbola}🌻}%
+  \or {\fontspec{Symbola}🥀}%
+  \or {\fontspec{Symbola}🌺}%
+  \or {\fontspec{Symbola}🌼}\setcounter{flowerindex}{-1}%
+\fi%
+\stepcounter{flowerindex}%
+}}
 \newcommand{\flwr}{{\fontspec{Symbola}🌹}}
+\newcommand{\flowerqed}{\hfill\adjustbox{scale=1.2}{\flower}\n}
 
-        \newcounter{rainbowidx}
-	\setcounter{rainbowidx}{1}
-	\newcommand{\rainbow}[1]{{%
-	\if\therainbowidx1{\color{pridered}#1}\else{%
-	\if\therainbowidx2{\color{prideorange}#1}\else{%
-	\if\therainbowidx3{\color{prideyellow}#1}\else{%
-	\if\therainbowidx4{\color{pridegreen}#1}\else{%
-	\if\therainbowidx5{\color{prideblue}#1}\else{%
-	\if\therainbowidx6{\color{pridepurple}#1\setcounter{rainbowidx}{0}%
-	}\fi%
-	}\fi%
-	}\fi%
-	}\fi%
-	}\fi%
-	}\fi%
-	\stepcounter{rainbowidx}}}
+%pastel rainbow
+\definecolor{pastelred}{HTML}{FA9189}
+\definecolor{pastelorange}{HTML}{FCAE7C}
+\definecolor{pastelyellow}{HTML}{FFE699}
+\definecolor{pastelgreen}{HTML}{B3F5BC}
+\definecolor{pastelblue}{HTML}{D6F6FF}
+\definecolor{pastelpurple}{HTML}{D1BDFF}
+%rainbow
+\definecolor{pridered}{HTML}{ff595e}
+\definecolor{prideorange}{HTML}{f45d01}
+\definecolor{prideyellow}{HTML}{ffca3a}
+\definecolor{pridegreen}{HTML}{8ac926}
+\definecolor{prideblue}{HTML}{1982c4}
+\definecolor{pridepurple}{HTML}{8e7dbe}
+
+
+\newcommand{\hestiastyle}[1]{{#1}}
+
+\newcounter{rainbowidx}
+\setcounter{rainbowidx}{1}
+\newcommand{\rainbow}[1]{{%
+\if\therainbowidx1{\color{pridered}#1}\else{%
+\if\therainbowidx2{\color{prideorange}#1}\else{%
+\if\therainbowidx3{\color{prideyellow}#1}\else{%
+\if\therainbowidx4{\color{pridegreen}#1}\else{%
+\if\therainbowidx5{\color{prideblue}#1}\else{%
+\if\therainbowidx6{\color{pridepurple}#1\setcounter{rainbowidx}{0}%
+}\fi%
+}\fi%
+}\fi%
+}\fi%
+}\fi%
+}\fi%
+\stepcounter{rainbowidx}}}
 
 
 
