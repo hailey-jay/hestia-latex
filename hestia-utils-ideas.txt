@@ -43,3 +43,5 @@
 \thetestcounter
 \pgfmathsetcounter{testcounter}{int(random(0,6))}
 }
+
+%Unify styles, better separate functionalities.
