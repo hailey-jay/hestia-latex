@@ -1,14 +1,132 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{hestia-utils}[2024/09/27 Utility file for aliases, colors, and other fun stuff]
 
-% Required packages
+%packages
 \RequirePackage{amsmath, amsthm, color}
 \RequirePackage{scalerel}
 \RequirePackage{fontspec}
 \RequirePackage{adjustbox}
 \RequirePackage{xspace}
 
-% Operators
+%arithmetic
+
+%for calculating modulo. i see no need to @ protect it
+\newcount\remainder
+\def\modulo#1#2{%
+\remainder=#1%
+\divide\remainder by#2%
+\multiply\remainder by#2%
+\multiply\remainder by-1%
+\advance\remainder by#1\relax%
+}%
+
+%random int generation
+\newcounter{@holdresult}
+\setcounter{@holdresult}{1}
+\newcounter{@seed}
+\newcounter{@a}
+\newcounter{@b}
+\newcounter{@m}
+
+\newcommand{\setrandstate}[4]{%seed, a, b, m
+\setcounter{@seed}{#1}%
+\setcounter{@a}{#2}%
+\setcounter{@b}{#3}%
+\setcounter{@m}{#4}%
+}%
+
+\setrandstate{\the\time}{531}{6123}{8233} %magic numbers, i know... im sorry.
+
+\newcommand{\@advancerand}{%
+\setcounter{@holdresult}{\the\numexpr\the@a*\the@seed+\the@b\relax}%
+\modulo{\the@holdresult}{\the@m}%
+\setcounter{@seed}{\the\remainder}%
+}%
+
+\newcommand{\randint}[2]{%
+\@advancerand%
+\modulo{\the@seed}{\the\numexpr#2-#1+1\relax}%
+\the\numexpr\the\remainder+#1\relax%
+}%
+
+\newcommand{\@randint}[2]{%
+\@advancerand%
+\modulo{\the@seed}{\the\numexpr#2-#1+1\relax}%
+\setcounter{@holdresult}{\the\numexpr\the\remainder+#1\relax}%
+}%
+
+\newcommand{\printrand}{\@advancerand\the@seed}
+\newcommand{\printrandcurrent}{\the@seed}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\cyclecount}[2]{%
+  \ifnum\value{#1}<#2%
+    \addtocounter{#1}{1}%
+  \else%
+    \setcounter{#1}{1}%
+  \fi%
+}%
+\newcommand{\randomcount}[3]{%
+\@randint{#2}{#3}%
+\setcounter{#1}{\value{@holdresult}}%
+}%
+
+%catcodes, greek stuff
+\catcode`\ς=11
+\catcode`\ε=11
+\catcode`\ρ=11
+\catcode`\τ=11
+\catcode`\υ=11
+\catcode`\θ=11
+\catcode`\ι=11
+\catcode`\ο=11
+\catcode`\π=11
+\catcode`\α=11
+\catcode`\σ=11
+\catcode`\δ=11
+\catcode`\φ=11
+\catcode`\γ=11
+\catcode`\η=11
+\catcode`\ξ=11
+\catcode`\κ=11
+\catcode`\λ=11
+\catcode`\ζ=11
+\catcode`\χ=11
+\catcode`\ψ=11
+\catcode`\ω=11
+\catcode`\β=11
+\catcode`\ν=11
+\catcode`\μ=11
+\catcode`\Σ=11
+\catcode`\Ε=11
+\catcode`\Ρ=11
+\catcode`\Τ=11
+\catcode`\Υ=11
+\catcode`\Θ=11
+\catcode`\Ι=11
+\catcode`\Ο=11
+\catcode`\Π=11
+\catcode`\Α=11
+\catcode`\Σ=11
+\catcode`\Δ=11
+\catcode`\Φ=11
+\catcode`\Γ=11
+\catcode`\Η=11
+\catcode`\Ξ=11
+\catcode`\Κ=11
+\catcode`\Λ=11
+\catcode`\Ζ=11
+\catcode`\Χ=11
+\catcode`\Ψ=11
+\catcode`\Ω=11
+\catcode`\Β=11
+\catcode`\Ν=11
+\catcode`\Μ=11
+
+\newcommand{\Σ}{\sum}
+\newcommand{\Π}{\prod}
+
+%operators
 \DeclareMathOperator{\Syl}{Syl}
 \DeclareMathOperator{\Aut}{Aut}
 \DeclareMathOperator{\Perm}{Perm}
@@ -25,15 +143,16 @@
 \DeclareMathOperator{\orb}{Orbit}
 \DeclareMathOperator{\Var}{Var}
 \DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\EX}{ex}
+\DeclareMathOperator{\CR}{cr}
+\DeclareMathOperator{\Mod}{Mod}
 
-% Commands that mostly act like operators
+%quality of life math stuff
 \newcommand{\inv}{^{-1}}
 \newcommand{\qand}{\quad \text{and}\quad}
 \newcommand{\qqand}{\qquad \text{and}\qquad}
 \newcommand{\st}{\, | \,}
-
-% Wrapping commands
-\newcommand{\flr}[1]{\left\lfloor{#1}\right\rfloor}
+\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
 \newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
 \newcommand{\gen}[1]{\langle #1 \rangle}
 \newcommand{\gpres}[2]{\langle #1 \st #2 \rangle}
@@ -44,46 +163,8 @@
 \newcommand{\ket}[1]{|{#1}\rangle}
 \newcommand{\Ket}[1]{\left|{#1}\right\rangle}
 \newcommand{\braket}[2]{ \rangle {#1} | {#2} \rangle}
-\newcommand{\BraKet}[2]{\left \rangle {#1} \right|\left. {#2} \right \rangle}
-
-        \newenvironment{examples}{\noindent\textit{Examples.} \begin{itemize}}{\end{itemize}}
-
-
-
-       % \newenvironment{textmatrix}
-        %{\left(\begin{smallmatrix}}
-        %{\end{smallmatrix}\right)}
-
-        \newcommand{\mat}[1]{\mathchoice
-        {\begin{pmatrix}#1\end{pmatrix}}
-        {\left(\begin{smallmatrix}#1\end{smallmatrix}\right)}
-        {\left(\begin{smallmatrix}#1\end{smallmatrix}\right)}
-        {\left(\begin{smallmatrix}#1\end{smallmatrix}\right)}
-        }
-
-        \newcommand{\bmat}[1]{\begin{bmatrix}#1
-        \end{bmatrix}}
-
-        \newcommand{\set}[1]{\text{$\{#1\}$}}
-
-
-        % Unnumbered Environments
-        \newenvironment{sketch}{\noindent\textit{Sketch.\ }}{}
-        \newenvironment{remark}{\noindent\textit{Remark.\ }}{}
-        \newenvironment{note}{\textit{Note.\ }}{}
-        %\newenvironment{problem}[1][Problem]{\noindent{\textbf{#1.}}\xspace}{
-        %        \vspace{0.1in}
-        %}
-        \newcommand{\problem}[1]{\noindent{\bf #1.}\xspace}
-        \newenvironment{solution}[1][\it{Solution}]{\noindent \textbf{#1.}\xspacee}{\hfill $\blacksquare$
-                \vspace{0.25in}
-        }
-
-
-        \newenvironment{ex}{\noindent {\bf Example.} }{}
-
-
-        % Objects
+\newcommand{\BraKet}[2]{\left \rangle {#1} \middle| {#2} \right \rangle}
+\newcommand{\cl}{\overline}
 \providecommand{\N}{\mathds{N}}
 \providecommand{\Z}{\mathds{Z}}
 \providecommand{\R}{\mathds{R}}
@@ -91,19 +172,14 @@
 \providecommand{\Q}{\mathds{Q}}
 \providecommand{\F}{\mathds{F}}
 \renewcommand{\H}{\mathds{H}}
-
-
-        \newcommand{\Lp}{L^p}
-        \newcommand{\Lq}{L^q}
-        \renewcommand{\qed}{\hfill$\blacksquare$}
-
-% Aliases and symbols
+\newcommand{\Lp}{L^p}
+\newcommand{\Lq}{L^q}
 \let\@temp\phi
 \let\phi\varphi
 \let\varphi\@temp
-\newcommand{\tensor}{\otimes}%
-\newcommand{\cross}{\times}%
-\newcommand{\comp}{\circ}%
+\newcommand{\tensor}{\otimes}
+\newcommand{\cross}{\times}
+\newcommand{\comp}{\circ}
 \let\iso\cong
 \let\cong\equiv
 \let\eset\emptyset
@@ -114,25 +190,44 @@
 \newcommand{\isoarrow}{\overset{\sim}{\to}}
 
 
-        %cute qed stuff
+%bigplus and freeproduct
+\newcommand{\bigplus}{%
+  \DOTSB\mathop{\mathpalette\mattos@bigplus\relax}\slimits@
+}
+\newcommand\mattos@bigplus[2]{%
+  \vcenter{\hbox{%
+    \sbox\z@{$#1\sum$}%
+    \resizebox{!}{0.9\dimexpr\ht\z@+\dp\z@}{\raisebox{\depth}{$\m@th#1+$}}%
+  }}%
+  \vphantom{\sum}%
+}
+\newcommand{\freeprod}{%
+  \DOTSB\mathop{\mathpalette\mattos@freeprod\relax}\slimits@
+}
+\newcommand\mattos@freeprod[2]{%
+  \vcenter{\hbox{%
+    \sbox\z@{$#1\sum$}%
+    \resizebox{!}{0.9\dimexpr\ht\z@+\dp\z@}{\raisebox{\depth}{$\m@th#1*$}}%
+  }}%
+  \vphantom{\sum}%
+}
+\newcommand{\csum}{%
+  \DOTSB\mathop{\mathpalette\mattos@csum\relax}\slimits@
+}
+\newcommand\mattos@csum[2]{%
+  \vcenter{\hbox{%
+    \sbox\z@{$#1\sum$}%
+    \resizebox{!}{0.9\dimexpr\ht\z@+\dp\z@}{\raisebox{\depth}{$\m@th#1\#$}}%
+  }}%
+  \vphantom{\sum}%
+}
+%%%%%%%%%%%%%%%%%%%%
 
-\newcounter{flowerindex}
-\newcommand{\flower}{\hestiastyle{%
-\ifcase\theflowerindex%
-  \or {\fontspec{Symbola}🌹}%
-  \or {\fontspec{Symbola}🌷}%
-  \or {\fontspec{Symbola}💐}%
-  \or {\fontspec{Symbola}🌸}%
-  \or {\fontspec{Symbola}🌻}%
-  \or {\fontspec{Symbola}🥀}%
-  \or {\fontspec{Symbola}🌺}%
-  \or {\fontspec{Symbola}🌼}\setcounter{flowerindex}{-1}%
-\fi%
-\stepcounter{flowerindex}%
-}}
-\newcommand{\flwr}{{\fontspec{Symbola}🌹}}
-\newcommand{\flowerqed}{\hfill\adjustbox{scale=1.2}{\flower}\n}
 
+%for coloring
+\newcommand{\hestiastyle}[1]{{#1}}
+\newcommand{\m}[1]{\hestiastyle{\( #1 \)}}
+\newcommand{\M}[1]{\hestiastyle{\[ #1 \]}}
 %pastel rainbow
 \definecolor{pastelred}{HTML}{FA9189}
 \definecolor{pastelorange}{HTML}{FCAE7C}
@@ -148,51 +243,107 @@
 \definecolor{prideblue}{HTML}{1982c4}
 \definecolor{pridepurple}{HTML}{8e7dbe}
 
+%environments and similar
+\newenvironment{examples}{\noindent\textit{Examples.} \begin{itemize}}{\end{itemize}}
+\newcommand{\mat}[1]{\mathchoice
+{\begin{pmatrix}#1\end{pmatrix}}
+{\left(\begin{smallmatrix}#1\end{smallmatrix}\right)}
+{\left(\begin{smallmatrix}#1\end{smallmatrix}\right)}
+{\left(\begin{smallmatrix}#1\end{smallmatrix}\right)}
+}
+\newcommand{\bmat}[1]{\begin{bmatrix}#1
+\end{bmatrix}}
+\newcommand{\set}[1]{\text{$\{#1\}$}}
+%unnumbered
+\newenvironment{sketch}{\noindent\textit{Sketch.}}{}
+\newenvironment{remark}{\noindent\textit{Remark.}}{}
+\newenvironment{note}{\textit{Note.}}{}
+%basically the same, but. Huh
+\newcommand{\env}[1]{\noindent{\bf #1.}\xspace}
+\newcommand{\problem}[1]{\noindent{\bf #1.}\xspace}
+%i don't really use this, but ill keep it around for now
+\newenvironment{solution}[1][\it{Solution}]{\noindent \textbf{#1.}\xspace}{\hfill $\blacksquare$
+        \vspace{0.25in}
+}
+\newenvironment{ex}{\noindent {\bf Example.}}{}
 
-\newcommand{\hestiastyle}[1]{{#1}}
 
-\newcounter{rainbowidx}
-\setcounter{rainbowidx}{1}
-\newcommand{\rainbow}[1]{{%
-\if\therainbowidx1{\color{pridered}#1}\else{%
-\if\therainbowidx2{\color{prideorange}#1}\else{%
-\if\therainbowidx3{\color{prideyellow}#1}\else{%
-\if\therainbowidx4{\color{pridegreen}#1}\else{%
-\if\therainbowidx5{\color{prideblue}#1}\else{%
-\if\therainbowidx6{\color{pridepurple}#1\setcounter{rainbowidx}{0}%
-}\fi%
-}\fi%
-}\fi%
-}\fi%
-}\fi%
-}\fi%
-\stepcounter{rainbowidx}}}
+%proofs
+\renewcommand{\qed}{\hfill$\blacksquare$}
 
+%cute proof stuff
+\newcommand{\@flowerrenew}{\cyclecount{@flowerindex}{8}}
+\newcounter{@flowerindex}
+\setcounter{@flowerindex}{1}
+\newcommand{\flower}{\hestiastyle{%
+\flwr{\the@flowerindex}
+\@flowerrenew%
+}}
+\newcommand{\flwrrose}{{\fontspec{Symbola}🌹}}
+\newcommand{\flwr}[1]{%
+\ifcase\the\numexpr#1\relax%
+  \or {\fontspec{Symbola}🌹}%
+  \or {\fontspec{Symbola}🌷}%
+  \or {\fontspec{Symbola}💐}%
+  \or {\fontspec{Symbola}🌸}%
+  \or {\fontspec{Symbola}🌻}%
+  \or {\fontspec{Symbola}🥀}%
+  \or {\fontspec{Symbola}🌺}%
+  \or {\fontspec{Symbola}🌼}%
+  \else \flwrrose
+\fi%
+}
 
+\newcommand{\flowerqed}{\hfill\adjustbox{scale=1.2}{\flower}\\}
+\newcommand{\roseqed}{\hfill\adjustbox{scale=1.2}{\flwrrose}\\}
+\newcommand{\flwrqed}[1]{\hfill\adjustbox{scale=1.2}{\flwr{#1}}\\}
 
-        \newcommand{\pastelrainbow}[1]{{%
-	\if\therainbowidx1{\color{pastelred}#1}\else{%
-	\if\therainbowidx2{\color{pastelorange}#1}\else{%
-	\if\therainbowidx3{\color{pastelyellow}#1}\else{%
-	\if\therainbowidx4{\color{pastelgreen}#1}\else{%
-	\if\therainbowidx5{\color{transblue}#1}\else{%
-	\if\therainbowidx6{\color{pastelpurple}#1\setcounter{rainbowidx}{0}%
-	}\fi%
-	}\fi%
-	}\fi%
-	}\fi%
-	}\fi%
-	}\fi%
-	\stepcounter{rainbowidx}}}
+\newcommand{\@rainbowrenew}{\cyclecount{@rainbowindex}{6}}
+\newcounter{@rainbowindex}
+\setcounter{@rainbowindex}{1}
+\newcommand{\rainbow}{
+\ifcase\the@rainbowindex
+  \or \color{pridered}%
+  \or \color{prideorange}%
+  \or \color{prideyellow}%
+  \or \color{pridegreen}%
+  \or \color{prideblue}%
+  \or \color{pridepurple}%
+\fi%
+\@rainbowrenew%
+}
+
+\newcommand{\pastelrainbow}{
+\ifcase\the@rainbowindex
+  \or \color{pastelred}%
+  \or \color{pastelorange}%
+  \or \color{pastelyellow}%
+  \or \color{pastelgreen}%
+  \or \color{transblue}%
+  \or \color{pastelpurple}%
+\fi%
+\@rainbowrenew%
+}
+
 \let\@emph\emph
 \renewcommand{\emph}[1]{\@emph{\hestiastyle{\underline{#1}}}}
-       \DeclareOption{gay}{
-		\renewcommand{\hestiastyle}{\rainbow}
-        }
-        \DeclareOption{pastel}{
-		\renewcommand{\hestiastyle}{\pastelrainbow}
 
-        }
+\DeclareOption{gay}{
+\renewcommand{\hestiastyle}[1]{{\rainbow #1}}
+}
+\DeclareOption{pastel}{
+\renewcommand{\hestiastyle}[1]{{\pastelrainbow #1}}
+}
+\DeclareOption{garden}{
+\renewcommand{\@flowerrenew}{\randomcount{@flowerindex}{1}{8}}
+}
+\DeclareOption{sexualitycrisis}{
+\renewcommand{\@rainbowrenew}{\randomcount{@rainbowindex}{1}{6}}
+}
+\DeclareOption{chaos}{
+\renewcommand{\@rainbowrenew}{\randomcount{@rainbowindex}{1}{6}}
+\renewcommand{\@flowerrenew}{\randomcount{@flowerindex}{1}{8}}
+}
 
 \DeclareOption*{\PackageWarning{hestia-utils}{Unknown ‘\CurrentOption’}}
 \ProcessOptions\relax

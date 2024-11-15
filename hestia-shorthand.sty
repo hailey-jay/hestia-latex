@@ -1,79 +1,72 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{hestia-shorthand}[2024/09/27 Shorthands for class notes]
 
-        \RequirePackage{amsmath,amsthm,amssymb,color,latexsym}
-        \RequirePackage{scalerel}
-        \RequirePackage{hestia-utils}
+\RequirePackage{amsmath,amsthm,amssymb,color,latexsym}
+\RequirePackage{scalerel}
+\RequirePackage{hestia-utils}
 
+%im desperately trying to get all of these things organized
+%and written in a consistent style, but as ive been told,
+%im a bit of a messy puppy :p
+%it really shows in this code...
 
-        % Commands that mostly act like operators
-        \newcommand{\ST}{\text{ s.t. }}
-        \newcommand{\AlE}{\text{ a.e. }}
-
-        % Wrapping
-        \newcommand{\infseq}[2]{\{#2_{#1}\}_{#1=1}^\infty}
-
-        \newcommand{\m}[1]{\hestiastyle{$ #1 $}}
-        \newcommand{\M}[1]{\hestiastyle{$$ #1 $$}}
-
-        %\newcommand{\p}[1]{(#1)}
-        \newcommand{\ap}[1]{\left(#1\right)}
-
-        \newcounter{example}[section]
-
-        \renewcommand{\ex}[1]{\noindent{\bf Example~\theexample.\stepcounter{example} }{#1}\n}
-
-         %proof, interjection, and other nonsense.
-        \newcommand{\PrB}[1]{\nointent\textbf{#1. }}
-        \newcommand{\PrI}[1]{\noindent\textit{#1 }}
-        \newcommand{\PrRa}[1]{\noindent($\Longrightarrow$)}
-        \newcommand{\Prra}[1]{\noindent($\Rightarrow$)}
-        \newcommand{\PrLa}[1]{\noindent($\Longleftarrow$)}
-        \newcommand{\Prla}[1]{\noindent($\Leftarrow$)}
-
-\newcommand{\radish}{\n\vspace{0.1in}\hrule\vspace{0.1in}\n}
-\newcommand{\sradish}{\n\vspace{-0.2in}\hrule\vspace{0.1in}\n}
-
-
-        % Aliases
-
-        \newcommand{\icup}[1]{\bigcup_{i=1}^{#1}}
-        \newcommand{\icap}[1]{\bigcap_{i=1}^{#1}}
-        \newcommand{\isum}[1]{\sum_{i=1}^{#1}}
-
-        \let\cl\overline
-        \renewcommand{\cal}{\mathcal}
-\newcommand{\n}{~\par}
-        \newcommand{\clear}{\rm~\n}
-\renewcommand{\\}{\backslash}
-
-        \newcommand{\sect}[1]{\section*{\S\ #1}}
-
-        \newcommand{\oI}{(0,1)}
-        \newcommand{\ltl}{\proof Left to latte.\qed}
-
-        % Text/Math mode {Not in HJUtils}
-        \renewcommand{\iff}{\relax\ifmmode\Rightleftarrow\else if and only if \fi}
-        \newcommand{\A}{\relax\ifmmode\forall\else for all \fi}
-        \newcommand{\E}{\relax\ifmmode\exists\else there exists \fi}
-        \renewcommand{\implies}{\relax\ifmmode\Rightarrow\else implies \fi}
-        \renewcommand{\st}{\relax\ifmmode{\ |\ }\else such that \fi}
-
-        \newcommand{\nbd}{neighborhood }
-        \newcommand{\Nbd}{Neighborhood }
-        \newcommand{\nbds}{neighborhoods }
-        \newcommand{\Nbds}{Neighborhoods }
-        \let\join\vee
+%funny ahh shorthands
+\newcommand{\infseq}[2]{\{#2_{#1}\}_{#1=0}^\infty}
+\newcommand{\icup}[1]{\bigcup_{i=1}^{#1}}
+\newcommand{\icap}[1]{\bigcap_{i=1}^{#1}}
+\newcommand{\isum}[1]{\sum_{i=1}^{#1}}
+\newcommand{\oI}{(0,1)}
+\newcommand{\ap}[1]{\left(#1\right)}
+\let\join\vee
 \let\meet\wedge
+\renewcommand{\cal}{\mathcal}
+\newcommand{\n}{~\par}
+\newcommand{\clear}{\rm~\n}
+\newcommand{\toby}[1]{\overset {#1} \longrightarrow}
+\newcommand{\mapsby}[1]{\overset {#1} \longmapsto}
+%\renewcommand{\\}{\backslash}
 
-%\newcommand{\smileyhalmos}{$\square$\kern-0.65em \raisebox{1pt}{\adjustbox{scale=0.5}{$\smile$}}
-%\kern-0.78em
-%\raisebox{0.3em}{\adjustbox{scale=0.6}{$\cdot$}}
-%\kern-0.28em
-%\raisebox{0.3em}{\adjustbox{scale=0.6}{$\cdot$}}}
-%\newcommand{\smileyqed}{\hfill\smileyhalmos\n}
+%examples (that I will be changing)
+\newcounter{example}[section]
+\renewcommand{\ex}[1]{\noindent{\bf Example~\theexample.\stepcounter{example} }{#1}\n}
+
+%proof interjections
+%some of these might make it in to utils at some point
+\newcommand{\PrB}[1]{\nointent\textbf{#1. }}
+\newcommand{\PrI}[1]{\noindent\textit{#1 }}
+\newcommand{\PrRa}[1]{\noindent($\Longrightarrow$)}
+\newcommand{\Prra}[1]{\noindent($\Rightarrow$)}
+\newcommand{\PrLa}[1]{\noindent($\Longleftarrow$)}
+\newcommand{\Prla}[1]{\noindent($\Leftarrow$)}
+\newcommand{\tfaepart}[2]{\noindent (#1$\implies$#2)}
+\newcommand{\idea}{\noindent\rotatebox[origin=c]{180}{$\Lsh$}}
+\renewcommand{\bar}{\overline}
 
 
+%textmode aliases
+\renewcommand{\iff}{\relax\ifmmode\Rightleftarrow\else if and only if \fi}
+\newcommand{\A}{\relax\ifmmode\forall\else for all \fi}
+\newcommand{\E}{\relax\ifmmode\exists\else there exists \fi}
+\renewcommand{\implies}{\relax\ifmmode\Rightarrow\else implies \fi}
+\renewcommand{\st}{\relax\ifmmode{\ |\ }\else such that \fi}
+\newcommand{\ltl}{Left to latte.}
+
+%ςcodes (temp)
+\catcode`\ς=0
+\newcommand{\δεφρετ}{deformation retract\xspace}
+\newcommand{\δεφρετσ}{deformation retracts\xspace}
+\newcommand{\ψοντ}{continuous\xspace}
+\newcommand{\wτσ}{want to show\xspace}
+\newcommand{\Wτσ}{We want to show\xspace}
+\newcommand{\ιε}{that is\xspace}
+\newcommand{\Τι}{That is\xspace}
+\newcommand{\ιρτβσ}{it remains to be shown\xspace}
+\newcommand{\Ιρτβσ}{It remains to be shown\xspace}
+\newcommand{\στ}{such that\xspace}
+\newcommand{\αε}{almost everywhere\xspace}
+\newcommand{\ιφφ}{if and only if\xspace}
+\newcommand{\ε}{there exists\xspace}
+\newcommand{\α}{there exists\xspace}
 
 \DeclareOption*{\PackageWarning{hestia-shorthand}{Unknown ‘\CurrentOption’}}
 \ProcessOptions\relax
