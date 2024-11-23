@@ -1,0 +1,209 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{hestia-symb}[2024/11/15 Only the essentials!]
+
+%packages
+\RequirePackage{amsmath, amsthm, color}
+\RequirePackage{scalerel}
+\RequirePackage{fontspec}
+\RequirePackage{adjustbox}
+
+%catcodes, greek stuff
+\catcode`\ς=11
+\catcode`\ε=11
+\catcode`\ρ=11
+\catcode`\τ=11
+\catcode`\υ=11
+\catcode`\θ=11
+\catcode`\ι=11
+\catcode`\ο=11
+\catcode`\π=11
+\catcode`\α=11
+\catcode`\σ=11
+\catcode`\δ=11
+\catcode`\φ=11
+\catcode`\γ=11
+\catcode`\η=11
+\catcode`\ξ=11
+\catcode`\κ=11
+\catcode`\λ=11
+\catcode`\ζ=11
+\catcode`\χ=11
+\catcode`\ψ=11
+\catcode`\ω=11
+\catcode`\β=11
+\catcode`\ν=11
+\catcode`\μ=11
+\catcode`\Σ=11
+\catcode`\Ε=11
+\catcode`\Ρ=11
+\catcode`\Τ=11
+\catcode`\Υ=11
+\catcode`\Θ=11
+\catcode`\Ι=11
+\catcode`\Ο=11
+\catcode`\Π=11
+\catcode`\Α=11
+\catcode`\Σ=11
+\catcode`\Δ=11
+\catcode`\Φ=11
+\catcode`\Γ=11
+\catcode`\Η=11
+\catcode`\Ξ=11
+\catcode`\Κ=11
+\catcode`\Λ=11
+\catcode`\Ζ=11
+\catcode`\Χ=11
+\catcode`\Ψ=11
+\catcode`\Ω=11
+\catcode`\Β=11
+\catcode`\Ν=11
+\catcode`\Μ=11
+
+\newcommand{\Σ}{\sum}
+\newcommand{\Π}{\prod}
+
+%operators
+\DeclareMathOperator{\Syl}{Syl}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Perm}{Perm}
+\DeclareMathOperator{\Class}{Class}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\rad}{rad}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\ev}{ev}
+\DeclareMathOperator{\Spec}{spec}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\orb}{Orbit}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\EX}{ex}
+\DeclareMathOperator{\CR}{cr}
+\DeclareMathOperator{\Mod}{Mod}
+
+%quality of life math stuff
+\newcommand{\inv}{^{-1}}
+\newcommand{\st}{\, | \,}
+\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
+\newcommand{\gen}[1]{\langle #1 \rangle}
+\newcommand{\gpres}[2]{\langle #1 \st #2 \rangle}
+\newcommand{\norm}[1]{\|#1\|}
+\newcommand{\abs}[1]{\left|{#1}\right|}
+\newcommand{\bra}[1]{\langle {#1} |}
+\newcommand{\Bra}[1]{\left\langle {#1} \right|}
+\newcommand{\ket}[1]{|{#1}\rangle}
+\newcommand{\Ket}[1]{\left|{#1}\right\rangle}
+\newcommand{\braket}[2]{ \rangle {#1} | {#2} \rangle}
+\newcommand{\BraKet}[2]{\left \rangle {#1} \middle| {#2} \right \rangle}
+\newcommand{\cl}{\overline}
+\providecommand{\N}{\mathds{N}}
+\providecommand{\Z}{\mathds{Z}}
+\providecommand{\R}{\mathds{R}}
+\providecommand{\C}{\mathds{C}}
+\providecommand{\Q}{\mathds{Q}}
+\providecommand{\F}{\mathds{F}}
+\renewcommand{\H}{\mathds{H}}
+\newcommand{\Lp}{L^p}
+\newcommand{\Lq}{L^q}
+\let\@temp\phi
+\let\phi\varphi
+\let\varphi\@temp
+\newcommand{\tensor}{\otimes}
+\newcommand{\cross}{\times}
+\newcommand{\comp}{\circ}
+\let\iso\cong
+\let\cong\equiv
+\let\eset\emptyset
+\let\homeo\simeq
+\let\into\hookrightarrow
+\let\onto\twoheadrightarrow
+\newcommand{\isoarrow}{\overset{\sim}{\to}}
+\let\join\vee
+\let\meet\wedge
+
+
+%bigplus and freeproduct
+\newcommand{\bigplus}{%
+  \DOTSB\mathop{\mathpalette\mattos@bigplus\relax}\slimits@
+}
+\newcommand\mattos@bigplus[2]{%
+  \vcenter{\hbox{%
+    \sbox\z@{$#1\sum$}%
+    \resizebox{!}{0.9\dimexpr\ht\z@+\dp\z@}{\raisebox{\depth}{$\m@th#1+$}}%
+  }}%
+  \vphantom{\sum}%
+}
+\newcommand{\freeprod}{%
+  \DOTSB\mathop{\mathpalette\mattos@freeprod\relax}\slimits@
+}
+\newcommand\mattos@freeprod[2]{%
+  \vcenter{\hbox{%
+    \sbox\z@{$#1\sum$}%
+    \resizebox{!}{0.9\dimexpr\ht\z@+\dp\z@}{\raisebox{\depth}{$\m@th#1*$}}%
+  }}%
+  \vphantom{\sum}%
+}
+\newcommand{\csum}{%
+  \DOTSB\mathop{\mathpalette\mattos@csum\relax}\slimits@
+}
+\newcommand\mattos@csum[2]{%
+  \vcenter{\hbox{%
+    \sbox\z@{$#1\sum$}%
+    \resizebox{!}{0.9\dimexpr\ht\z@+\dp\z@}{\raisebox{\depth}{$\m@th#1\#$}}%
+  }}%
+  \vphantom{\sum}%
+}
+%%%%%%%%%%%%%%%%%%%%
+
+%environments and similar
+\newenvironment{examples}{\noindent\textit{Examples.} \begin{itemize}}{\end{itemize}}
+\newcommand{\mat}[1]{\mathchoice
+{\begin{pmatrix}#1\end{pmatrix}}
+{\left(\begin{smallmatrix}#1\end{smallmatrix}\right)}
+{\left(\begin{smallmatrix}#1\end{smallmatrix}\right)}
+{\left(\begin{smallmatrix}#1\end{smallmatrix}\right)}
+}
+\newcommand{\bmat}[1]{\begin{bmatrix}#1
+\end{bmatrix}}
+\newcommand{\set}[1]{\text{$\{#1\}$}}
+%unnumbered
+\newenvironment{sketch}{\noindent\textit{Sketch.}}{}
+\newenvironment{remark}{\noindent\textit{Remark.}}{}
+\newenvironment{note}{\textit{Note.}}{}
+%basically the same, but. Huh
+\newcommand{\env}[1]{\noindent{\bf #1.}\xspace}
+\newcommand{\problem}[1]{\noindent{\bf #1.}\xspace}
+%i don't really use this, but ill keep it around for now
+\newenvironment{solution}[1][\it{Solution}]{\noindent \textbf{#1.}\xspace}{\hfill $\blacksquare$
+        \vspace{0.25in}
+}
+\newenvironment{ex}{\noindent {\bf Example.}}{}
+
+
+%proofs
+\renewcommand{\qed}{\hfill$\blacksquare$}
+
+\newcommand{\flwrrose}{\text{\fontspec{Symbola}🌹}}
+\newcommand{\flwr}[1]{%
+\ifcase\the\numexpr#1\relax%
+  \or {\fontspec{Symbola}🌹}%
+  \or {\fontspec{Symbola}🌷}%
+  \or {\fontspec{Symbola}💐}%
+  \or {\fontspec{Symbola}🌸}%
+  \or {\fontspec{Symbola}🌻}%
+  \or {\fontspec{Symbola}🥀}%
+  \or {\fontspec{Symbola}🌺}%
+  \or {\fontspec{Symbola}🌼}%
+  \else \flwrrose
+\fi%
+}
+\newcommand{\renderemoji}[1]{{\fontspec{Symbola}#1}}
+\newcommand{\flwrqed}[1]{\hfill\adjustbox{scale=1.2}{\flwr{#1}}\\}
+
+\newcommand{\roseqed}[1]{\hfill\adjustbox{scale=1.2}{\flwr{1}}\\}
+
+\DeclareOption*{\PackageWarning{hestia-symb}{Unknown ‘\CurrentOption’}}
+\ProcessOptions\relax

@@ -1,0 +1,180 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{hestia-extra}[2024/11/15 Utility file for aliases, colors, and other fun stuff]
+
+%packages
+\RequirePackage{amsmath, amsthm, color}
+\RequirePackage{scalerel}
+\RequirePackage{fontspec}
+\RequirePackage{adjustbox}
+\RequirePackage{xspace}
+
+%arithmetic
+
+%for calculating modulo. i see no need to @ protect it
+\newcount\remainder
+\def\modulo#1#2{%
+\remainder=#1%
+\divide\remainder by#2%
+\multiply\remainder by#2%
+\multiply\remainder by-1%
+\advance\remainder by#1\relax%
+}%
+
+%random int generation
+\newcounter{@holdresult}
+\setcounter{@holdresult}{1}
+\newcounter{@seed}
+\newcounter{@a}
+\newcounter{@b}
+\newcounter{@m}
+
+\newcommand{\setrandstate}[4]{%seed, a, b, m
+\setcounter{@seed}{#1}%
+\setcounter{@a}{#2}%
+\setcounter{@b}{#3}%
+\setcounter{@m}{#4}%
+}%
+
+\setrandstate{\the\time}{531}{6123}{8233} %magic numbers, i know... im sorry.
+
+\newcommand{\@advancerand}{%
+\setcounter{@holdresult}{\the\numexpr\the@a*\the@seed+\the@b\relax}%
+\modulo{\the@holdresult}{\the@m}%
+\setcounter{@seed}{\the\remainder}%
+}%
+
+\newcommand{\randint}[2]{%
+\@advancerand%
+\modulo{\the@seed}{\the\numexpr#2-#1+1\relax}%
+\the\numexpr\the\remainder+#1\relax%
+}%
+
+\newcommand{\@randint}[2]{%
+\@advancerand%
+\modulo{\the@seed}{\the\numexpr#2-#1+1\relax}%
+\setcounter{@holdresult}{\the\numexpr\the\remainder+#1\relax}%
+}%
+
+\newcommand{\printrand}{\@advancerand\the@seed}
+\newcommand{\printrandcurrent}{\the@seed}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\cyclecount}[2]{%
+  \ifnum\value{#1}<#2%
+    \addtocounter{#1}{1}%
+  \else%
+    \setcounter{#1}{1}%
+  \fi%
+}%
+\newcommand{\randomcount}[3]{%
+\@randint{#2}{#3}%
+\setcounter{#1}{\value{@holdresult}}%
+}%
+
+\newcommand{\I}{[0,1]}
+%funny ahh shorthands
+\newcommand{\infseq}[2]{\{#2_{#1}\}_{#1=0}^\infty}
+\newcommand{\icup}[1]{\bigcup_{i=1}^{#1}}
+\newcommand{\icap}[1]{\bigcap_{i=1}^{#1}}
+\newcommand{\isum}[1]{\sum_{i=1}^{#1}}
+\newcommand{\oI}{(0,1)}
+\newcommand{\ap}[1]{\left(#1\right)}
+\renewcommand{\cal}{\mathcal}
+\newcommand{\n}{~\par}
+\newcommand{\clear}{\rm~\n}
+\newcommand{\toby}[1]{\overset {#1} \longrightarrow}
+\newcommand{\mapsby}[1]{\overset {#1} \longmapsto}
+%proof interjections
+%some of these might make it in to utils at some point
+\newcommand{\PrB}[1]{\nointent\textbf{#1. }}
+\newcommand{\PrI}[1]{\noindent\textit{#1 }}
+\newcommand{\PrRa}[1]{\noindent($\Longrightarrow$)}
+\newcommand{\Prra}[1]{\noindent($\Rightarrow$)}
+\newcommand{\PrLa}[1]{\noindent($\Longleftarrow$)}
+\newcommand{\Prla}[1]{\noindent($\Leftarrow$)}
+\newcommand{\tfaepart}[2]{\noindent (#1$\implies$#2)}
+\newcommand{\idea}{\noindent\rotatebox[origin=c]{180}{$\Lsh$}}
+\renewcommand{\bar}{\overline}
+
+%for coloring
+\newcommand{\hestiastyle}[1]{{#1}}
+\newcommand{\m}[1]{\hestiastyle{\( #1 \)}}
+\newcommand{\M}[1]{\hestiastyle{\[ #1 \]}}
+%pastel rainbow
+\definecolor{pastelred}{HTML}{FA9189}
+\definecolor{pastelorange}{HTML}{FCAE7C}
+\definecolor{pastelyellow}{HTML}{FFE699}
+\definecolor{pastelgreen}{HTML}{B3F5BC}
+\definecolor{pastelblue}{HTML}{D6F6FF}
+\definecolor{pastelpurple}{HTML}{D1BDFF}
+%rainbow
+\definecolor{pridered}{HTML}{ff595e}
+\definecolor{prideorange}{HTML}{f45d01}
+\definecolor{prideyellow}{HTML}{ffca3a}
+\definecolor{pridegreen}{HTML}{8ac926}
+\definecolor{prideblue}{HTML}{1982c4}
+\definecolor{pridepurple}{HTML}{8e7dbe}
+
+
+
+%cute proof stuff
+\newcommand{\@flowerrenew}{\cyclecount{@flowerindex}{8}}
+\newcounter{@flowerindex}
+\setcounter{@flowerindex}{1}
+\newcommand{\flower}{\hestiastyle{%
+\flwr{\the@flowerindex}
+\@flowerrenew%
+}}
+
+\newcommand{\flowerqed}{\hfill\adjustbox{scale=1.2}{\flower}\\}
+
+
+\newcommand{\@rainbowrenew}{\cyclecount{@rainbowindex}{6}}
+\newcounter{@rainbowindex}
+\setcounter{@rainbowindex}{1}
+\newcommand{\rainbow}{
+\ifcase\the@rainbowindex
+  \or \color{pridered}%
+  \or \color{prideorange}%
+  \or \color{prideyellow}%
+  \or \color{pridegreen}%
+  \or \color{prideblue}%
+  \or \color{pridepurple}%
+\fi%
+\@rainbowrenew%
+}
+
+\newcommand{\pastelrainbow}{
+\ifcase\the@rainbowindex
+  \or \color{pastelred}%
+  \or \color{pastelorange}%
+  \or \color{pastelyellow}%
+  \or \color{pastelgreen}%
+  \or \color{transblue}%
+  \or \color{pastelpurple}%
+\fi%
+\@rainbowrenew%
+}
+
+\let\@emph\emph
+\renewcommand{\emph}[1]{\@emph{\hestiastyle{\underline{#1}}}}
+
+\DeclareOption{gay}{
+\renewcommand{\hestiastyle}[1]{{\rainbow #1}}
+}
+\DeclareOption{pastel}{
+\renewcommand{\hestiastyle}[1]{{\pastelrainbow #1}}
+}
+\DeclareOption{garden}{
+\renewcommand{\@flowerrenew}{\randomcount{@flowerindex}{1}{8}}
+}
+\DeclareOption{sexualitycrisis}{
+\renewcommand{\@rainbowrenew}{\randomcount{@rainbowindex}{1}{6}}
+}
+\DeclareOption{chaos}{
+\renewcommand{\@rainbowrenew}{\randomcount{@rainbowindex}{1}{6}}
+\renewcommand{\@flowerrenew}{\randomcount{@flowerindex}{1}{8}}
+}
+
+\DeclareOption*{\PackageWarning{hestia-extra}{Unknown ‘\CurrentOption’}}
+\ProcessOptions\relax
