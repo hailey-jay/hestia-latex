@@ -186,7 +186,7 @@
 %proofs
 \renewcommand{\qed}{\hfill$\blacksquare$}
 
-\newcommand{\flwrrose}{\text{\fontspec{Symbola}🌹}}
+\newcommand{\flwrrose}{\raisebox{-0.3em}{\includegraphics[width=0.8em]{rose}}}
 \newcommand{\flwr}[1]{%
 \ifcase\the\numexpr#1\relax%
   \or {\fontspec{Symbola}🌹}%
@@ -203,7 +203,7 @@
 \newcommand{\renderemoji}[1]{{\fontspec{Symbola}#1}}
 \newcommand{\flwrqed}[1]{\hfill\adjustbox{scale=1.2}{\flwr{#1}}\\}
 
-\newcommand{\roseqed}[1]{\hfill\adjustbox{scale=1.2}{\flwr{1}}\\}
+\newcommand{\roseqed}[1]{\hfill\adjustbox{scale=1.2}{\flwrrose}\\~\\}
 
 \DeclareOption*{\PackageWarning{hestia-symb}{Unknown ‘\CurrentOption’}}
 \ProcessOptions\relax
