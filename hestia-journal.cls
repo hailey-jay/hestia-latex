@@ -33,8 +33,18 @@ paperheight=9.25in]{geometry}
 \RequirePackage[T1]{fontenc}
 \usetikzlibrary{calc}
 
+
+\usepackage[
+  pdfpagelabels=true,
+  %pdftitle={Qualifying Exam Study Guide},
+  %pdfauthor={Hailey Jay Garcia},
+  linkbordercolor=hjcolorone
+  ]{hyperref}
+  \usepackage{changepage}
+\usepackage{hestia-symb}
+\usepackage{dsfont}
+
 \renewcommand{\contentsname}{Table of Contents}
-\usepackage{makeidx}
 
 
 
@@ -65,10 +75,18 @@ paperheight=9.25in]{geometry}
 
 
 % -----Title Stuff
-
+\usepackage{etoolbox}
+\pretocmd{\tableofcontents}{%
+  \if@openright\cleardoublepage\else\clearpage\fi
+  \pdfbookmark[0]{\contentsname}{toc}%
+}{}{}%
 \setcounter{tocdepth}{3}
 \let\@hjtoc\tableofcontents
-\renewcommand{\tableofcontents}{{\@helvetica\@hjtoc}}
+\renewcommand{\tableofcontents}{{%
+\@helvetica\@hjtoc}}
+
+%\let\@hjindex\index
+%\renewcommand{\index}[1]{#1\@hjindex{#1}}
 
 \newcommand{\@helvetica}{\fontfamily{phv}\selectfont}
 %\titleformat*{\section}{\large\@helvetica\bfseries}
@@ -103,7 +121,9 @@ paperheight=9.25in]{geometry}
 
 \renewcommand{\maketitle}{
   \thispagestyle{empty}%
-
+  \hypersetup{pageanchor=false}
+\thispdfpagelabel{ }
+\pdfbookmark[0]{\@title}{initialpage}
 \begin{textblock}{10}(1.5,1.5)
   \noindent {\@helvetica{}\Large \@author}
   \vspace{1in}
@@ -113,7 +133,7 @@ paperheight=9.25in]{geometry}
  
  \noindent{\@helvetica{}\Large \@booksubtitle}
 
- \vspace{3.5in}
+ \vspace{4.25in}
 
  %\noindent\includegraphics[width=0.6in]{rose}
  %\vspace{0.3in}
@@ -137,6 +157,7 @@ paperheight=9.25in]{geometry}
   \end{tikzpicture}
  
   \pagebreak
+  \setcounter{page}{0}
       }
 
 
