@@ -82,6 +82,7 @@
 \DeclareMathOperator{\EX}{ex}
 \DeclareMathOperator{\CR}{cr}
 \DeclareMathOperator{\Mod}{Mod}
+\DeclareMathOperator{\RAD}{rad}
 
 %quality of life math stuff
 \newcommand{\inv}{^{-1}}
@@ -175,7 +176,8 @@
 \newenvironment{note}{\textit{Note.}}{}
 %basically the same, but. Huh
 \newcommand{\env}[1]{\noindent{\bf #1.}\xspace}
-\newcommand{\problem}[1]{\noindent{\bf #1.}\xspace}
+\newenvironment{problem}[1][Problem]{\noindent \textbf{#1.}}{\vspace{0.5em}\par}
+\renewenvironment{proof}{\noindent {\it Proof. }}{\hfill\flwrrose\vspace{2em}\par}
 %i don't really use this, but ill keep it around for now
 \newenvironment{solution}[1][\it{Solution}]{\noindent \textbf{#1.}\xspace}{\hfill $\blacksquare$
         \vspace{0.25in}

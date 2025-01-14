@@ -13,11 +13,17 @@
 \definecolor{hjcolortwo}{HTML}{\HJ@colortwo}%
 \LoadClass{book}
 
+\RequirePackage{bophook}
+
 \usepackage[
 %bindingoffset=0.625in,
-left=.8125in, right=.8125in,     
-top=.8125in, bottom=.9375in,   paperwidth=6.375in, 
-paperheight=9.25in]{geometry}
+%left=.8125in, right=.8125in,     
+%top=.8125in, bottom=.9375in,
+marginparwidth=0.4in,     % + <- Width of your marginpar
+  marginparsep=.1in, 
+margin=.75in,
+paperwidth=6in, 
+paperheight=9in]{geometry}
 \RequirePackage{amsmath,amsthm,xcolor}
 \RequirePackage{amssymb,latexsym}
 \RequirePackage{graphicx}
@@ -32,6 +38,11 @@ paperheight=9.25in]{geometry}
 \RequirePackage{tikz}
 \RequirePackage[T1]{fontenc}
 \usetikzlibrary{calc}
+\usetikzlibrary{decorations.markings}
+\RequirePackage{marginnote}
+
+\setmainfont[Script=Greek]{CMU Serif}
+\RequirePackage[warnings-off={mathtools-colon,mathtools-overbracket}]{unicode-math}
 
 
 \usepackage[
@@ -45,14 +56,6 @@ paperheight=9.25in]{geometry}
 \usepackage{dsfont}
 
 \renewcommand{\contentsname}{Table of Contents}
-
-
-
-
-% -----Theorems
-% not gonna add this back for backwards compatibility :(
-% -----Theorems
-
 
 \newcommand{\colophon}{\thispagestyle{empty}
         \begin{tikzpicture}[remember picture, overlay]
@@ -88,9 +91,17 @@ paperheight=9.25in]{geometry}
 %\let\@hjindex\index
 %\renewcommand{\index}[1]{#1\@hjindex{#1}}
 
-\newcommand{\@helvetica}{\fontfamily{phv}\selectfont}
+\newcommand{\@helvetica}{\fontspec{HelveticaNeue}}
 %\titleformat*{\section}{\large\@helvetica\bfseries}
 \titleformat{\section}{\@helvetica\large\bfseries}{\S\thesection}{0.5em}{}
+
+
+\let\hj@tempsection\section
+\def\@hjsec#1{\def\sectionname{#1}\hj@tempsection*{#1}\renewcommand{\rightmark}{\S\thesection: #1}}
+\def\@@hjsec#1{\def\sectionname{#1}\hj@tempsection{#1}\renewcommand{\rightmark}{\S\thesection: #1}}
+\def\section{\@ifstar\@hjsec\@@hjsec}
+
+%\renewcommand{\section}[1]{\@hjsec{#1}\def\sectionname{#1}}
 
 \titleformat
 {\chapter} % command
@@ -108,6 +119,11 @@ paperheight=9.25in]{geometry}
 \vspace{0.2in}
 ] % after-code
 
+\let\hj@tempchapter\chapter
+\def\@hjchap#1{\def\chaptername{#1}\hj@tempchapter*{#1}\renewcommand{\leftmark}{#1}\renewcommand{\rightmark}{}}
+\def\@@hjchap#1{\def\chaptername{#1}\hj@tempchapter{#1}\renewcommand{\leftmark}{\thechapter: #1}\renewcommand{\rightmark}{}}
+\def\chapter{\@ifstar\@hjchap\@@hjchap}
+
 \let\@authorsubtitle\relax
 \def\authorsubtitle#1{\def\@authorsubtitle{#1}}
 \let\@booksubtitle\relax
@@ -116,6 +132,9 @@ paperheight=9.25in]{geometry}
 \def\publisher#1{\def\@publisher{#1}}
 \let\@publishertwo\relax
 \def\publishertwo#1{\def\@publishertwo{#1}}
+
+\def\chaptername{}
+\def\sectionname{}
 
 \usepackage[absolute,overlay]{textpos}
 
@@ -173,6 +192,14 @@ paperheight=9.25in]{geometry}
   %\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
   %\cfoot{\thepage}
 
+  %\AtBeginPage{%
+    \renewcommand{\leftmark}{}
+    \renewcommand{\rightmark}{}
+
+%  \RequirePackage{atbegshi}
+%  \AtBeginShipout{
+%
+% }
 
   \fancyhf[EHL]{\@helvetica\textbf{\thepage}\quad{\footnotesize\leftmark}}
   \fancyhf[OHR]{\@helvetica{\footnotesize\rightmark}\quad\textbf{\thepage}}
@@ -197,10 +224,21 @@ paperheight=9.25in]{geometry}
 \end{tikzpicture}
   }
 
+%\usepackage{showframe}
 
+\newcounter{@flagnum}
+\setcounter{@flagnum}{0}
+\definecolor{bured}{rgb}{0.8, 0.0, 0.0}
+\newcommand{\flag}{\marginpar[\hfill \adjustbox{scale=1.1}{\textcolor{bured}{\fontspec{Symbola}⚑}}]{\adjustbox{scale=1.1}{\textcolor{bured}{\fontspec{Symbola}⚑}}}\pdfbookmark[4]{Flag~\the@flagnum}{flag\the@flagnum}\stepcounter{@flagnum}}
 
+\newif\if@loaddebug\@loaddebugfalse
+\DeclareOption{debug}{%
+  \@loaddebugtrue
+}
+\ProcessOptions\relax
 
-
-
+\if@loaddebug
+  \RequirePackage{layout}
+\fi
   
 \endinput
