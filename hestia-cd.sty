@@ -1,0 +1,7 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{hestia-cd}[Commutative Diagram Frontend]
+
+\RequirePackage{tikz}
+\usetikzlibrary{cd}
+\directlua{dofile('hestia-cd.lua')}
+\newcommand{\hestiacd}[1]{\directlua{testparse("#1")}}

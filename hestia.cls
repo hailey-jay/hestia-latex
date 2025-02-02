@@ -40,17 +40,18 @@
 \def\@maketitle{%
   \let\footnote\thanks
 
+  \noindent\@title\par
   \noindent\@author\par
-  \noindent\@classtitle\par
+  %\noindent\@classtitle\par
   \noindent\@date\par
-  \noindent\@title
+  
 
   \vspace{-5pt}
   \noindent\rule{\textwidth}{1.5pt}
   \vspace{2pt}
 
-  \par
-  \@icon
+  %\par
+  %\@icon
 }
 
 %icon
@@ -58,7 +59,7 @@
 \newcommand{\@preicon}{%
   \begin{tikzpicture}[remember picture, overlay]
     \node [anchor=north east, inner sep=0pt] at ($(current page.north east)+(-2.4,-2.45)$)
-      {\includegraphics[height=60pt]{icon}};
+      {\includegraphics[height=60pt]{rose}};
   \end{tikzpicture}
 }
 
@@ -69,7 +70,7 @@
   \renewcommand{\@preicon}{%
     \begin{tikzpicture}[remember picture, overlay]
       \node [anchor=north east, inner sep=0pt] at ($(current page.north east)+(-2.4,-2.45)$)
-        {\includegraphics[height=60pt]{icon-dark}};
+        {\includegraphics[height=60pt]{whiterose}};
     \end{tikzpicture}
   }
 }
@@ -80,7 +81,7 @@
   \renewcommand{\@preicon}{%
     \begin{tikzpicture}[remember picture, overlay]
       \node [anchor=north east, inner sep=0pt] at ($(current page.north east)+(-2.4,-2.45)$)
-        {\includegraphics[height=60pt]{icon-dark}};
+        {\includegraphics[height=60pt]{whiterose}};
     \end{tikzpicture}
   }
 }

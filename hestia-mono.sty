@@ -1,0 +1,37 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{hestia-cd}[hestia cd frontend for tikzcd]
+
+\RequirePackage{fontspec}
+\RequirePackage{concmath-otf}
+\setmainfont{FiraCode Nerd Font}
+\RequirePackage{mathastext}
+
+
+\DeclareMathSizes{5}{5}{5}{5}
+\DeclareMathSizes{6}{6}{6}{6}
+\DeclareMathSizes{7}{7}{7}{7}
+\DeclareMathSizes{8}{8}{8}{8}
+\DeclareMathSizes{9}{9}{9}{9}
+\DeclareMathSizes{\@xpt}{\@xpt}{\@xpt}{\@xpt}
+\DeclareMathSizes{\@xipt}{\@xipt}{\@xipt}{\@xipt}
+\DeclareMathSizes{\@xiipt}{\@xiipt}{\@xiipt}{\@xiipt}
+\DeclareMathSizes{\@xivpt}{\@xivpt}{\@xivpt}{\@xivpt}
+\DeclareMathSizes{\@xviipt}{\@xviipt}{\@xviipt}{\@xviipt}
+\DeclareMathSizes{\@xxpt}{\@xxpt}{\@xxpt}{\@xxpt}
+\DeclareMathSizes{\@xxvpt}{\@xxvpt}{\@xxvpt}{\@xxvpt}
+
+% symbol adjustments
+\renewcommand{\Z}{Z\rlap{\kern-5pt Z}}
+\renewcommand{\R}{R\rlap{\kern-7.5pt \rule{0.8pt}{7.75pt}}}
+\renewcommand{\tilde}[1]{\mathrlap{#1}\raisebox{8pt}{$\sim$}}
+\renewcommand{\hat}[1]{\mathrlap{#1}\raisebox{3pt}{\textasciicircum}}
+
+\linespread{1.5}
+
+% section redef
+\titleformat{\section}%
+{\normalfont\bfseries}{\thesection}{11pt}%
+{\hdashrule{\textwidth}{1.5pt}{3pt}\n}%
+[\raisebox{5pt}{\hdashrule{\textwidth}{1.5pt}{3pt}}]
+
+\RequirePackage{dsfont}
