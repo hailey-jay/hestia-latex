@@ -3,5 +3,5 @@
 
 \RequirePackage{tikz}
 \usetikzlibrary{cd}
-\directlua{dofile('hestia-cd.lua')}
-\newcommand{\hestiacd}[1]{\directlua{testparse("#1")}}
+\directlua{dofile('/home/haileyjay/texmf/tex/latex/hestia-latex/hestiacd.lua')}
+\newcommand{\hestiacd}[1]{\vspace{-3em}\directlua{testparse("#1")}}
