@@ -1,0 +1,134 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{hestia-utils}[2025/3/17 Only the essentials!]
+
+%packages
+\RequirePackage{amsmath, amsthm, color}
+\RequirePackage{scalerel}
+\RequirePackage{fontspec}
+\RequirePackage{adjustbox}
+\RequirePackage{dsfont}
+
+%operators
+\DeclareMathOperator{\Syl}{Syl}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Perm}{Perm}
+\DeclareMathOperator{\Class}{Class}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\rad}{rad}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\ev}{ev}
+\DeclareMathOperator{\Spec}{spec}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\orb}{Orbit}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\EX}{ex}
+\DeclareMathOperator{\CR}{cr}
+\DeclareMathOperator{\Mod}{Mod}
+\DeclareMathOperator{\RAD}{rad}
+
+
+% as yet unorganized
+
+\newcommand{\RP}{\R P}
+\newcommand{\CP}{\C P}
+\newcommand{\del}{\partial}
+\newcommand{\SPAN}[1]{\text{span\,}\left\{#1\right\}}
+\newcommand{\toby}[1]{\overset{#1}\to}
+\let\transverse\pitchfork
+\DeclareMathOperator{\SUPP}{supp}
+\DeclareMathOperator{\CL}{cl}
+\let\bs\backslash
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\LCM}{lcm}
+\DeclareMathOperator{\Inv}{Inv}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\ch}{ch}
+
+\newcommand{\CHECK}{\hfill{\fontspec{Symbola}✓}}
+\newcommand{\st}{\middle|}
+\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
+\newcommand{\gen}[1]{\left\langle {#1} \right\rangle}
+\newcommand{\norm}[1]{\left\|#1\right\|}
+\newcommand{\abs}[1]{\left|{#1}\right|}
+\newcommand{\bra}[1]{\langle {#1} |}
+\newcommand{\Bra}[1]{\left\langle {#1} \right|}
+\newcommand{\ket}[1]{|{#1}\rangle}
+\newcommand{\Ket}[1]{\left|{#1}\right\rangle}
+\newcommand{\braket}[2]{ \rangle {#1} | {#2} \rangle}
+\newcommand{\BraKet}[2]{\left \rangle {#1} \middle| {#2} \right \rangle}
+\def\set#1{\left\{#1\right\}}
+\newcommand{\cl}{\overline}
+\providecommand{\N}{\mathds{N}}
+\providecommand{\Z}{\mathds{Z}}
+\providecommand{\R}{\mathds{R}}
+\providecommand{\C}{\mathds{C}}
+\providecommand{\Q}{\mathds{Q}}
+\providecommand{\F}{\mathds{F}}
+%\let\@temp\phi
+%\let\phi\varphi
+%\let\varphi\@temp
+\newcommand{\tensor}{\otimes}
+\newcommand{\cross}{\times}
+\newcommand{\comp}{\circ}
+\let\iso\cong
+\let\into\hookrightarrow
+\let\onto\twoheadrightarrow
+
+%bigplus and freeproduct
+\newcommand{\bigplus}{%
+  \DOTSB\mathop{\mathpalette\mattos@bigplus\relax}\slimits@
+}
+\newcommand\mattos@bigplus[2]{%
+  \vcenter{\hbox{%
+    \sbox\z@{$#1\sum$}%
+    \resizebox{!}{0.9\dimexpr\ht\z@+\dp\z@}{\raisebox{\depth}{$\m@th#1+$}}%
+  }}%
+  \vphantom{\sum}%
+}
+\newcommand{\freeprod}{%
+  \DOTSB\mathop{\mathpalette\mattos@freeprod\relax}\slimits@
+}
+\newcommand\mattos@freeprod[2]{%
+  \vcenter{\hbox{%
+    \sbox\z@{$#1\sum$}%
+    \resizebox{!}{0.9\dimexpr\ht\z@+\dp\z@}{\raisebox{\depth}{$\m@th#1*$}}%
+  }}%
+  \vphantom{\sum}%
+}
+\newcommand{\csum}{%
+  \DOTSB\mathop{\mathpalette\mattos@csum\relax}\slimits@
+}
+\newcommand\mattos@csum[2]{%
+  \vcenter{\hbox{%
+    \sbox\z@{$#1\sum$}%
+    \resizebox{!}{0.9\dimexpr\ht\z@+\dp\z@}{\raisebox{\depth}{$\m@th#1\#$}}%
+  }}%
+  \vphantom{\sum}%
+}
+
+
+
+\newcommand{\flwrrose}{\raisebox{-0.1in}{%
+\begin{tikzpicture}[yscale=0.1,xscale=0.1, every node/.append style={scale=1}, inner sep=0pt, outer sep=0pt]
+  \path[fill,nonzero rule,shift={(0,8.184239833333333)},scale=1.3333] (0.5864, 4.28).. controls (0.3783, 4.4232) and (-0.0291, 4.7993) .. (0.0199, 5.1382).. controls (0.0648, 5.4492) and (0.5457, 5.8024) .. (0.7409, 5.7479).. controls (0.8315, 5.7225) and (0.6685, 5.5721) .. (0.6095, 5.4991).. controls (0.4734, 5.3309) and (0.3427, 5.2592) .. (0.3871, 5.0948).. controls (0.4769, 4.7608) and (0.6785, 4.6001) .. (0.5864, 4.28) -- cycle(0.0842, 4.1973).. controls (-0.0016, 3.9268) and (0.2585, 3.4029) .. (0.5231, 3.2955).. controls (0.9219, 3.1335) and (1.5173, 3.0442) .. (1.6179, 3.1495).. controls (1.7598, 3.298) and (1.2226, 3.5435) .. (1.0543, 3.4337).. controls (0.8577, 3.3053) and (0.3173, 3.5418) .. (0.4896, 4.0147).. controls (0.5525, 4.1534) and (0.203, 4.5701) .. (0.0842, 4.1973) -- cycle;
+  \path[fill,nonzero rule,shift={(0,8.184239833333333)},scale=1.3333] (2.6515, 4.1785).. controls (2.7694, 4.2558) and (2.9685, 4.2622) .. (2.9308, 4.0397).. controls (2.7591, 3.6921) and (2.3802, 3.2678) .. (1.8718, 3.4072).. controls (1.2396, 3.5808) and (1.1515, 3.6533) .. (0.7536, 3.5672).. controls (0.5333, 3.5195) and (0.5965, 4.1592) .. (0.7179, 4.1312).. controls (1.0832, 4.047) and (1.0345, 3.1778) .. (2.6515, 4.1785) -- cycle;
+  \path[fill,nonzero rule,shift={(0,8.184239833333333)},scale=1.3333] (0.6021, 5.0139).. controls (0.6013, 4.856) and (0.8955, 4.3257) .. (1.0882, 4.306).. controls (1.1038, 4.6576) and (0.8306, 5.1204) .. (1.2263, 5.3346).. controls (1.7511, 5.5513) and (2.0339, 5.1966) .. (2.0735, 5.2699).. controls (2.0804, 5.892) and (0.6363, 5.7828) .. (0.6021, 5.0139) -- cycle;
+  \path[fill,nonzero rule,shift={(0,8.184239833333333)},scale=1.3333] (0.1971, 1.5856).. controls (0.374, 1.7724) and (0.2938, 2.1255) .. (0.3988, 2.505).. controls (0.5841, 3.174) and (1.621, 2.9761) .. (1.621, 2.9761).. controls (0.8603, 2.6405) and (0.4563, 1.571) .. (0.1971, 1.5856) -- cycle;
+  \path[fill,nonzero rule,shift={(0,8.184239833333333)},scale=1.3333] (1.9004, 5.2).. controls (1.9102, 5.1398) and (1.5055, 5.2883) .. (1.4337, 4.8273).. controls (1.4149, 4.7069) and (1.4278, 4.5563) .. (1.515, 4.4709).. controls (1.5826, 4.4047) and (1.7914, 4.5075) .. (1.7936, 4.4131).. controls (1.796, 4.3124) and (1.4867, 4.2379) .. (1.3292, 4.2742).. controls (1.2758, 4.2865) and (1.2195, 4.3317) .. (1.2084, 4.3854).. controls (1.1858, 4.4953) and (1.2113, 4.825) .. (1.2666, 5.0078).. controls (1.3318, 5.2241) and (1.8741, 5.3643) .. (1.9004, 5.2) -- cycle;
+  \path[fill,nonzero rule,shift={(0,8.184239833333333)},scale=1.3333] (1.7694, 5.0207).. controls (1.8662, 5.0051) and (2.0018, 4.95) .. (1.9909, 4.8047).. controls (1.9709, 4.5366) and (1.8481, 4.5726) .. (1.8043, 4.6888).. controls (1.7826, 4.7463) and (1.8405, 4.818) .. (1.7082, 4.8338).. controls (1.5708, 4.8504) and (1.6067, 4.6347) .. (1.663, 4.5901).. controls (1.9675, 4.3489) and (2.3772, 4.8604) .. (1.8524, 5.0808).. controls (1.8132, 5.0973) and (1.7362, 5.0259) .. (1.7694, 5.0207) -- cycle;
+  \path[fill,nonzero rule,shift={(0,8.184239833333333)},scale=1.3333] (2.9252, 5.2994).. controls (2.8957, 5.7521) and (2.1326, 6.2686) .. (1.1672, 6.0916).. controls (1.0311, 6.0667) and (0.7748, 5.7694) .. (0.8805, 5.6841).. controls (0.9373, 5.6382) and (1.2833, 5.8158) .. (1.442, 5.8142).. controls (1.8607, 5.8101) and (2.1943, 5.7386) .. (2.3247, 5.342).. controls (2.5027, 4.6663) and (2.2442, 4.374) .. (1.6112, 4.1539).. controls (1.1377, 4.0239) and (0.9723, 4.3889) .. (0.9642, 4.2227).. controls (1.0053, 3.5028) and (3.019, 3.8516) .. (2.9252, 5.2994) -- cycle;
+  \path[fill,nonzero rule,shift={(0,8.184239833333333)},scale=1.3333] (1.645, 2.8134).. controls (1.0448, 2.7544) and (0.718, 1.7603) .. (0.3183, 1.5488).. controls (0.3183, 1.5488) and (1.2077, 1.6407) .. (1.5537, 2.1549).. controls (1.7285, 2.4145) and (1.645, 2.8134) .. (1.645, 2.8134) -- cycle;
+  \path[fill,nonzero rule,shift={(0,8.184239833333333)},scale=1.3333] (1.8331, 3.1766).. controls (2.2655, 3.0823) and (2.4027, 2.5453) .. (2.7524, 2.2573).. controls (2.7524, 2.2573) and (2.0828, 2.3899) .. (1.8977, 2.6408).. controls (1.7908, 2.7859) and (1.8331, 3.1766) .. (1.8331, 3.1766) -- cycle;
+  \path[fill,nonzero rule,shift={(0,8.184239833333333)},scale=1.3333] (1.8943, 3.2538).. controls (2.4715, 2.9973) and (2.6454, 2.3162) .. (2.8782, 2.2459).. controls (2.7435, 2.4558) and (2.7914, 2.8575) .. (2.543, 3.1086).. controls (2.385, 3.2682) and (1.8943, 3.2538) .. (1.8943, 3.2538) -- cycle;
+\end{tikzpicture}}}
+
+\DeclareOption{rose}{%
+  \renewcommand{\qed}{\hfill\flwrrose}
+}
+\DeclareOption*{\PackageWarning{hestia-utils}{Unknown ‘\CurrentOption’}}
+\ProcessOptions\relax
